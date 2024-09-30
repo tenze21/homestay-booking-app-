@@ -1,7 +1,6 @@
 import React from 'react';
 import './Login.css'
 
-import password_icon from '../Assets/password.png'
 
 const ForgotPassword=()=>{
 
@@ -14,7 +13,6 @@ const ForgotPassword=()=>{
             <div className='inputs'>
                 <div className='aboveIntput'>New Password</div>
                 <div className="input">
-                    <img src={password_icon} alt="" srcset="" />
                     <div className='placeholder'>
                         <input type="password" placeholder='Enter your Password' />
                     </div>
@@ -23,7 +21,6 @@ const ForgotPassword=()=>{
             <div className='inputs'>
                 <div className='aboveIntput'>Confirm New Password</div>
                 <div className="input">
-                    <img src={password_icon} alt="" srcset="" />
                     <div className='placeholder'>
                         <input type="password" placeholder='Enter your Password' />
                     </div>

@@ -1,10 +1,7 @@
 import React from 'react';
 import './Login.css'
 
-//images
-import user_icon from '../Assets/person.png'
-import email_icon from '../Assets/email.png'
-import password_icon from '../Assets/password.png'
+
 
 const Login=()=>{
 
@@ -18,7 +15,6 @@ const Login=()=>{
             <div className='inputs'>
                 <div className='aboveIntput'>Email</div>
                 <div className="input">
-                    <img src={email_icon} alt="" srcset="" />
                     <div className='placeholder'>
                         <input type="email" placeholder='Enter your Email' />
                     </div>
@@ -27,7 +23,6 @@ const Login=()=>{
             <div className='inputs'>
                 <div className='aboveIntput'>Password</div>
                 <div className="input">
-                    <img src={password_icon} alt="" srcset="" />
                     <div className='placeholder'>
                         <input type="password" placeholder='Enter your Password' />
                     </div>
