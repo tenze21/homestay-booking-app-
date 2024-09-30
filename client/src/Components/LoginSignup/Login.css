@@ -17,7 +17,7 @@ body{
     flex-direction: column;
     margin: auto;
     margin-top: 200px;
-    width: 700px;
+    width: 550px;
     background: #fff;
     padding-bottom: 30px;
     box-shadow: 10px 10px 25px -20px #000000;
@@ -60,7 +60,7 @@ body{
 }
 .aboveIntput{
     text-align: left;
-    margin-left: 160px;
+    margin-left: 82px;
     margin-bottom: -10px;
     font-weight: 500;
     font-size: 16px;
