@@ -1,5 +1,4 @@
-import React from 'react';
-import './Login.css'
+import '../assets/Login.css'
 
 
 
@@ -32,7 +31,7 @@ const Login=()=>{
             <div className="submit-container">
                 <div className="submit">Log In</div>
             </div>
-            <div className="no-account">Don't have an account? <span>Sign Up</span></div>
+            <div className="no-account">Don&apos;t have an account? <span>Sign Up</span></div>
         </div>
     )
 }

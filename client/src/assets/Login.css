@@ -6,7 +6,6 @@ body{
     border-radius: 29px;
     flex-direction: column;
     margin: auto;
-    margin-top: 200px;
     background: #fff;
     padding-bottom: 30px;
     box-shadow: 10px 10px 25px -20px #000000;
@@ -15,12 +14,11 @@ body{
     display: flex;
     border-radius: 29px;
     flex-direction: column;
-    margin: auto;
-    margin-top: 200px;
+    margin: 3rem auto;
     width: 550px;
     background: #fff;
     padding-bottom: 30px;
-    box-shadow: 10px 10px 25px -20px #000000;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 .header{
     display: flex;

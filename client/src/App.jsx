@@ -1,17 +1,17 @@
-import './App.css'
-import Login from './Components/LoginSignup/Login'
-import ForgotPassword from './Components/LoginSignup/ForgotPassword'
-import Signup from './Components/LoginSignup/SignUp'
+import { Outlet } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
-
   return (
     <>
-      <Login />
-      <ForgotPassword />
-      <Signup />
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

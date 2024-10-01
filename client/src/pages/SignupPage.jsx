@@ -1,7 +1,5 @@
-import React from 'react';
-import './Login.css'
+import '../assets/Login.css'
 
-import side_image from '../Assets/sideimage.png'
 
 const SignUp=()=>{
 
@@ -45,7 +43,7 @@ const SignUp=()=>{
                             <div className="input">
                                 <div className='placeholder'>
                                     <form id="genderForm">
-                                        <label for="gender"></label>
+                                        <label htmlFor="gender"></label>
                                         <select className='genderForm' id="gender" name="gender">
                                             <option value="">Pick a gender</option>
                                             <option value="male">Male</option>
