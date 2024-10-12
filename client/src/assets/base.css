@@ -81,6 +81,12 @@ body{
   }
   .property-list{
     position: relative;
+    a{
+      transition: var(--transition-hover);
+      &:hover{
+        color: var(--primary);
+      }
+    }
   }
   .tooltip-container{
     position: relative;
