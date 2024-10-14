@@ -54,11 +54,19 @@
   --transition-hover: all 200ms ease-in-out;
   --check-box: #0af40a;
 }
+h1,h2,h3,h4,h5,h6, label, button{
+  font-family: var(--font-primary);
+}
+p,a,span,strong,input, select, div{
+  font-family: var(--font-secondary);
+}
+
+
 body{
     background-color: #f5f5f5;
 }
 
-.navbar {
+.navbar_custom {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,13 +74,13 @@ body{
   background-color: var(--secondary);
   color: white;
   height: 72px;
-  .nav-brand {
+  .nav-brand-custom {
     font-size: 2rem;
     font-family: var(--font-brand);
     color: #fff;
     text-decoration: none;
   }
-  .nav-link{
+  .nav-link-custom{
     color: #fff;
     text-decoration: none;
     font-family: var(--font-primary);
@@ -91,8 +99,9 @@ body{
   .tooltip-container{
     position: relative;
     display: inline-block;
+    bottom: 0.5rem;
   }
-  .tooltip{
+  .tooltip-custom{
     position: absolute;
     width: 300px;
     background-color: #0dcaf0;
@@ -117,7 +126,7 @@ body{
   .nav-btns{
     display: flex;
     gap: 1rem;
-    .nav-link{
+    .nav-link-custom{
         border: 1px solid var(--primary);
         font-weight: var(--font-weight-regular);
         padding: 0.2rem 2rem;

@@ -1,4 +1,4 @@
-import "../assets/Login.css";
+import "../assets/styles/Login.css";
 
 const SignUp = () => {
   return (

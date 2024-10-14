@@ -1,0 +1,29 @@
+@import url('./variables.css');
+
+.main_img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+.radius-top{
+    border-radius: 0 10px 0 0;
+}
+.radius-bottom{
+    border-radius: 0 0 10px 0;
+}
+.host-profile{
+    width: 120px;
+    height: 120px;
+}
+.host-name{
+    font-family: var(--font-primary);
+}
+.reservation-btn{
+    width: 100%;
+    background-color: var(--primary);
+    border: none;
+    padding: 0.5rem 0;
+    &:hover{
+        background-color: var(--btn-hover);
+    }
+}
