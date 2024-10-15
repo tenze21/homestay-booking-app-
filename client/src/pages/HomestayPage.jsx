@@ -20,7 +20,7 @@ import { useState } from "react";
 
 const HomestayPage = () => {
   const { id: homestayId } = useParams();
-
+ 
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [arrivalDate, setArrivalDate]= useState('');
   const [numberofDays, setNumberofDays]= useState();
@@ -72,7 +72,7 @@ const HomestayPage = () => {
           >
             <ListGroup.Item className="bg-transparent border-0 p-0 pb-2 d-flex align-items-center fs-4">
               <FaLocationDot className="fs-4 me-3" />
-              {homestay.gewog}, {homestay.dzongkhag}
+              <Link to={`https://www.google.com/maps?q=${homestay.latitude},${homestay.longitude}`} className="text-dark" target="blank" title="View location on map">{homestay.gewog}, {homestay.dzongkhag}</Link>
             </ListGroup.Item>
             <ListGroup.Item className="bg-transparent border-0 p-0 pb-2 d-flex align-items-center fs-4">
               <FaStar className="fs-4 me-3" />
