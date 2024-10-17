@@ -1,7 +1,6 @@
 import { FaFacebook, FaInstagramSquare, FaLinkedin  } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs"
 import { Link } from "react-router-dom";
-import '../assets/base.css';
 
 function Footer(){
     return(

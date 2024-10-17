@@ -1,0 +1,193 @@
+@layer reset {
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    margin: unset;
+  }
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+  img,
+  picture,
+  svg,
+  canvas {
+    /* display: block; */
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+:root {
+  --primary: #ff4500;
+  --secondary: #1e3a5f;
+  --font-primary: "Poppins", sans-serif;
+  --font-brand: "Pacifico", serif;
+  --font-secondary: "Lato", sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 700;
+  --radius-large: 0.625rem;
+  --radius-small: 0.5rem;
+  --transition-hover: all 200ms ease-in-out;
+  --check-box: #0af40a;
+}
+h1,h2,h3,h4,h5,h6, label, button{
+  font-family: var(--font-primary);
+}
+p,a,span,strong,input, select, div{
+  font-family: var(--font-secondary);
+}
+
+
+body{
+    background-color: #f5f5f5;
+}
+
+.navbar_custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: var(--secondary);
+  color: white;
+  height: 72px;
+  .nav-brand-custom {
+    font-size: 2rem;
+    font-family: var(--font-brand);
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-link-custom{
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-medium);
+  }
+  .property-list{
+    position: relative;
+    a{
+      transition: var(--transition-hover);
+      &:hover{
+        color: var(--primary);
+      }
+    }
+  }
+  .tooltip-container{
+    position: relative;
+    display: inline-block;
+    bottom: 0.5rem;
+  }
+  .tooltip-custom{
+    position: absolute;
+    width: 300px;
+    background-color: #0dcaf0;
+    color: #fff;
+    top: 2rem;
+    right: -10rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 4px 4px 2px rgb(0 0 0 /0.25);
+    font-family: var(--font-secondary);
+    &::before{
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #0dcaf0;
+        top: -0.6rem;
+        transform: rotate(135deg);
+        right: 9.8rem;
+    }
+  }
+  .nav-btns{
+    display: flex;
+    gap: 1rem;
+    .nav-link-custom{
+        border: 1px solid var(--primary);
+        font-weight: var(--font-weight-regular);
+        padding: 0.2rem 2rem;
+        border-radius: 10px;
+        transition: var(--transition-hover);
+        &:hover{
+            background-color: var(--primary);
+            color: #fff;
+        }
+    }
+  }
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-top: 1px solid #aeaeae;
+    background-color: #fff;
+    .logo{
+        font-family: var(--font-brand);
+        font-size: 2rem;
+    }
+    .site-links{
+        font-family: var(--font-secondary);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        a{
+            text-decoration: none;
+            color: #000;
+            position: relative;
+            width: fit-content;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background-color: #000;
+                bottom: 0;
+                left: 0;
+                transition: width 300ms ease-in-out;
+            }
+            &:hover::before{
+                width: 100%;
+            }
+        }
+    }
+    .social-links{
+        h3{
+            font-family: var(--font-primary);
+        }
+        .social-icons{
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            .icon{
+                font-size: 1.5rem;
+                color: #aeaeae;
+            }
+        }
+    }
+}

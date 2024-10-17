@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: #1e3a57;
+}
+
+h1{
+    align-self: center;
+}
+
+.belowregis{
+    font-size: 16px;
+}
+
+body {
+    min-height: 100vh;
+    background-color: rgb(255, 255, 255);
+}
+label{
+    font-size: 16px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  padding: 1rem 0.5rem;
+}
+
+section {
+    margin-top: 100px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 900px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    box-shadow: 10px 10px 25px -20px #000000;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.small-width{
+    max-width: 700px;
+}
+
+form  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+.login-form{
+    align-self: center;
+}
+.forgot-password{
+    font-size: 16px;
+}
+.forgot-form{
+    align-self: center;
+}
+.inputs{
+    border-radius: 0.5rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    width: 375px;
+    height: 45px;
+    padding: 0.25rem;
+    border-color: transparent;
+    
+}
+.rows{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+a, a:visited {
+    color: #1e3a57;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button,
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  
+}
+
+label{
+    width: 375px;
+    margin-top: 1rem;
+    align-self: center;
+  
+}
+
+button {
+    width: 200px;
+    margin-top: 1rem;
+    align-self: center;
+    color: #f5f5f5;
+    padding: 0.5rem;
+    background-color: #ff4500;
+
+}
+button:hover{
+    cursor: pointer;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    width: 275px;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+.hide {
+    display: none;
+}
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.line{
+    display: inline-block;
+}
+.toSignIn{
+    font-size: 16px;
+    align-self: center;
+    color: #1e3a57;
+}
+.signIn{
+    color: #1e3a57;
+}
