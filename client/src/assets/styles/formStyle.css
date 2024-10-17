@@ -74,9 +74,10 @@ form  {
     align-self: center;
 }
 .inputs{
+    align-self: center;
     border-radius: 0.5rem;
     font-family: 'Nunito', sans-serif;
-    font-size: 22px;
+    font-size: 16px;
     width: 375px;
     height: 45px;
     padding: 0.25rem;
