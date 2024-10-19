@@ -15,8 +15,10 @@ import { IoIosPeople } from "react-icons/io";
 import { FaStar, FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import "../assets/styles/homestayPage.css";
-import homestays from "../data/homestays";
 import { useState } from "react";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import { useGetHomestayDetailsQuery } from "../slices/homestaysApiSlice";
 
 const HomestayPage = () => {
   const { id: homestayId } = useParams();
@@ -27,19 +29,22 @@ const HomestayPage = () => {
 
   const navigate=useNavigate();
 
+  const { data: homestay, isLoading, error } = useGetHomestayDetailsQuery(homestayId);
   const checkoutHandler=()=>{
     navigate('/login?redirect=/payment')
   }
-
-  const homestay = homestays.find(
-    (homestay) => homestay._id === Number(homestayId)
-  );
 
   return (
     <>
       <Link className="text-dark fs-1" to="/">
         <IoMdArrowRoundBack />
       </Link>
+      {isLoading? (
+        <Loader/>
+      ) : error? (
+        <Message variant="danger">{error?.data?.message || error.error}</Message>
+      ) : (
+      <>
       <Row>
         <h1 className="fs-3 fw-semibold mt-3 mb-2">{homestay.title}</h1>
         <Col sm={12} md={12} lg={6}>
@@ -77,7 +82,7 @@ const HomestayPage = () => {
             <ListGroup.Item className="bg-transparent border-0 p-0 pb-2 d-flex align-items-center fs-4">
               <FaStar className="fs-4 me-3" />
               {homestay.rating} (
-              <Link to="#reviews" className="text-dark">{homestay.num_reviews} reviews</Link>)
+              <Link to="#reviews" className="text-dark">{homestay.numreviews} reviews</Link>)
             </ListGroup.Item>
             <ListGroup.Item className="bg-transparent p-0 pb-2 d-flex align-items-center fs-4">
               <IoIosPeople className="fs-4 me-3" />
@@ -92,17 +97,17 @@ const HomestayPage = () => {
               <Col lg={2}>
                 <ListGroup.Item className="bg-transparent border-0 p-0 pb-2 d-flex align-items-center fs-4">
                   <Image
-                    src={homestay.host_profile}
+                    src={homestay.profile}
                     className="rounded-circle host-profile"
                   />
                 </ListGroup.Item>
               </Col>
               <Col lg={10}>
                 <ListGroup.Item className="bg-transparent border-0 p-0 d-flex align-items-center fs-4 fw-bold host-name">
-                  Hosted by {homestay.host_name}
+                  Hosted by {homestay.full_name}
                 </ListGroup.Item>
                 <ListGroup.Item className="bg-transparent border-0 p-0 pb-2 d-flex align-items-center fs-4 fw-bold text-secondary opacity-50 host-contact">
-                  {homestay.host_number}, {homestay.host_email}
+                  {homestay.contact_number}, {homestay.email}
                 </ListGroup.Item>
               </Col>
             </Row>
@@ -130,7 +135,7 @@ const HomestayPage = () => {
           >
             <Row>
               <h3 className="fs-4 fw-semibold my-2">House Rules:</h3>
-              {homestay.house_rules.map((rule) => {
+              {homestay.rules.map((rule) => {
                 return (
                   <Col className="py-3" lg={3}>
                     <ListGroup.Item className="bg-transparent border-0 p-0 d-flex align-items-center fs-5 mb-3 fw-semibold host-name">
@@ -159,7 +164,7 @@ const HomestayPage = () => {
           >
             <h3 className="fw-semibold pt-3">Know your host.</h3>
             <ListGroup.Item className="bg-transparent border-0 p-0 d-flex align-items-center fs-5 mb-2 fw-normal host-name">
-              Full Name: {homestay.host_name}
+              Full Name: {homestay.full_name}
             </ListGroup.Item>
             <ListGroup.Item className="bg-transparent border-0 p-0 d-flex align-items-center fs-5 mb-2 fw-normal host-name">
               Profession: {homestay.profession}
@@ -173,7 +178,7 @@ const HomestayPage = () => {
           </ListGroup>
         </Col>
         <Col lg={4}className="mt-4">
-        {homestay.isAvailable? (
+        {homestay.isavaliable? (
             <Card className="p-3">
             <h2 className="fs-3 fw-semibold">BTN {homestay.rate} per night</h2>
             <Form>
@@ -227,6 +232,8 @@ const HomestayPage = () => {
         )}
         </Col>
       </Row>
+      </>
+      )}
     </>
   );
 };

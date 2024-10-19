@@ -8,13 +8,15 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import HomePage from './pages/HomePage';
 import HomestayPage from './pages/HomestayPage';
-import './assets/styles/formStyle.css'
 import{
   createBrowserRouter,
   RouterProvider,
   Route,
   createRoutesFromElements
 } from "react-router-dom";
+
+import { Provider } from 'react-redux';
+import store from "./store.js"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,7 +32,9 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
       <RouterProvider router={router}/>
+    </Provider>
   </React.StrictMode>
 );
 

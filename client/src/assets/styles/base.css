@@ -57,8 +57,8 @@
 h1,h2,h3,h4,h5,h6, label, button{
   font-family: var(--font-primary);
 }
-p,a,span,strong,input, select, div{
-  font-family: var(--font-secondary);
+p,a,span,strong,input, select, div, small{
+  font-family: var(--font-secondary) !important;
 }
 
 
@@ -76,14 +76,14 @@ body{
   height: 72px;
   .nav-brand-custom {
     font-size: 2rem;
-    font-family: var(--font-brand);
+    font-family: var(--font-brand) !important;
     color: #fff;
     text-decoration: none;
   }
   .nav-link-custom{
     color: #fff;
     text-decoration: none;
-    font-family: var(--font-primary);
+    font-family: var(--font-primary) !important;
     font-size: 1.5rem;
     font-weight: var(--font-weight-medium);
   }
@@ -148,7 +148,7 @@ footer{
     border-top: 1px solid #aeaeae;
     background-color: #fff;
     .logo{
-        font-family: var(--font-brand);
+        font-family: var(--font-brand) !important;
         font-size: 2rem;
     }
     .site-links{

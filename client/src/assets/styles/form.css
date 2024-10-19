@@ -1,0 +1,36 @@
+@import url("./variables.css");
+
+.button-custom {
+  display: block;
+  margin-inline: auto;
+  background-color: var(--primary);
+  border: none;
+  &:hover {
+    background-color: var(--btn-hover);
+  }
+}
+
+.custom-container{
+  min-height: 60vh;
+}
+
+.countries-dropdown, .states-dropdown {
+  position: absolute;
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  &::-webkit-scrollbar {
+    width: 5px; /* Width of the scrollbar */
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #f1f1f1; /* Background color of the track */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: blue; /* Color of the thumb */
+    border-radius: 10px;
+  }
+}

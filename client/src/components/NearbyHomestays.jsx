@@ -1,9 +1,9 @@
-import homestays from "../data/homestays";
+// import homestays from "../data/homestays";
 import { Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Homestay from "./Homestay";
 
-const NearbyHomestays=()=>{
+const NearbyHomestays=({homestays})=>{
 
     const [currentLocation, setCurrentLocation]= useState('');
     const homeStaysInLocation= homestays.filter((homestay)=>homestay.gewog.toLowerCase()===currentLocation.toLowerCase());

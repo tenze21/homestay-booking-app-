@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Footer(){
     return(
         <footer>
-            <div className="logo"><p>Homestay</p></div>
+            <div className="logo">Homestay</div>
             <div className="site-links">
                 <Link to="/">Terms and conditions</Link>
                 <Link to="/">Privacy policy</Link>
