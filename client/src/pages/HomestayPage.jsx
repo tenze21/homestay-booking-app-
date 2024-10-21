@@ -202,6 +202,7 @@ const HomestayPage = () => {
                       as="select"
                       value={numberOfGuests}
                       onChange={(e) => setNumberOfGuests(e.target.value)}
+                      required
                     >
                       {[...Array(homestay.accomodation).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
@@ -212,11 +213,11 @@ const HomestayPage = () => {
                   </Form.Group>
                   <Form.Group className="my-2">
                     <Form.Label>Arrival Date</Form.Label>
-                    <Form.Control type="date" value={arrivalDate} onChange={(e)=>setArrivalDate(e.target.value)}></Form.Control>
+                    <Form.Control type="date" value={arrivalDate} onChange={(e)=>setArrivalDate(e.target.value)} required></Form.Control>
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Number of days</Form.Label>
-                    <Form.Control type="number" placeholder="Enter number of days" value={numberofDays} onChange={(e)=>setNumberofDays(e.target.value)}></Form.Control>
+                    <Form.Control type="number" placeholder="Enter number of days" value={numberofDays} onChange={(e)=>setNumberofDays(e.target.value)} required></Form.Control>
                   </Form.Group>
               </ListGroup.Item>
             </ListGroup>

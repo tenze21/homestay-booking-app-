@@ -1,12 +1,12 @@
 CREATE TABLE "User"(
     user_id SERIAL PRIMARY KEY,
-    full_name VARCHAR(45) NOT NULL,
-    profile VARCHAR(255) NOT NULL,
-    email VARCHAR(45) UNIQUE NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    profile VARCHAR(255) NOT NULL DEFAULT "/images/user/default-profile.jpg",
+    email VARCHAR(255) UNIQUE NOT NULL,
     contact_number VARCHAR(15) UNIQUE,
     gender VARCHAR(10) CHECK (gender IN ('Male', 'Female', 'Other')),
-    country VARCHAR(45) NOT NULL,
-    region VARCHAR(45) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    region VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     isHost BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -99,7 +99,13 @@ ADD COLUMN title VARCHAR(245) NOT NULL;
 ALTER TABLE Homestays
 ADD COLUMN description VARCHAR(5000) NOT NULL; 
 
-DELETE FROM "User";
+ALTER TABLE "User"
+ALTER COLUMN profile SET DEFAULT '/images/user/default-profile.jpg'; 
+
+ALTER TABLE "User"
+ALTER COLUMN contact_number TYPE CHAR(8);
+
+DELETE FROM "User" WHERE user_id=14;
 DELETE FROM Homestays;
 
 SELECT * FROM "User";

@@ -4,7 +4,9 @@
   display: block;
   margin-inline: auto;
   background-color: var(--primary);
+  font-family: var(--font-primary);
   border: none;
+  width: 320px;
   &:hover {
     background-color: var(--btn-hover);
   }
@@ -33,4 +35,11 @@
     background: blue; /* Color of the thumb */
     border-radius: 10px;
   }
+}
+
+.custom-email{
+  margin-top: 2.6rem;
+}
+.custom-inst{
+  color: var(--primary);
 }

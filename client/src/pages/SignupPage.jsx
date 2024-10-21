@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Row, Col, Container, InputGroup } from "react-bootstrap";
+import { Form, Button, Row, Col, Container, InputGroup, Spinner } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "../assets/styles/form.css";
 import CountriesList from "../components/CountriesList";
 import StatesList from "../components/StatesList";
+import { useRegisterMutation } from "../slices/usersApiSlice";
+import { setCredentials } from "../slices/authSlice";
 
 const SignupScreen = () => {
   const [name, setName] = useState("");
@@ -23,6 +26,22 @@ const SignupScreen = () => {
   const [showStateDropdown, setShowStateDropdown] = useState(false);
   const [states, setStates] = useState([]);
   const [userState, setUserState] = useState("");
+
+  const dispatch= useDispatch();
+  const navigate = useNavigate();
+
+  const [register, { isLoading }] = useRegisterMutation();
+  const {userInfo}= useSelector((state)=>state.auth);
+
+  const {search}= useLocation();
+  const sp= new URLSearchParams(search);
+  const redirect= sp.get('redirect') || '/';
+
+  useEffect(()=>{
+    if(userInfo){
+      navigate(redirect);
+    }
+  }, [redirect, navigate, userInfo]);
 
   useEffect(() => {
     var config = {
@@ -67,6 +86,14 @@ const SignupScreen = () => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match!");
       return;
+    }else{
+      try {
+        const res= await register({ name, email, contactNumber, gender, userCountry, userState, password }).unwrap();
+        dispatch(setCredentials({ ...res }));
+        navigate(redirect);
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     }
   };
 
@@ -91,7 +118,7 @@ const SignupScreen = () => {
                 required
               ></Form.Control>
             </Form.Group>
-            <Form.Group controlId="email" className="my-3">
+            <Form.Group controlId="email" className="mb-3 custom-email">
               <Form.Label className="fw-semibold fs-4">
                 Email Address:
               </Form.Label>
@@ -142,7 +169,7 @@ const SignupScreen = () => {
                 pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$"
                 required
               ></Form.Control>
-              <small className="fw-semibold text-secondary">
+              <small className="custom-inst">
                 A secure password must have atleast 8 characters including
                 atleast 1 number, 1 special character and 1 uppercase letter.
               </small>
@@ -153,7 +180,7 @@ const SignupScreen = () => {
               <Form.Label className="fw-semibold fs-4">
                 Contact Number:
               </Form.Label>
-              <InputGroup className="mb-2">
+              <InputGroup>
                 <InputGroup.Text>+975</InputGroup.Text>
                 <Form.Control
                   type="number"
@@ -163,13 +190,13 @@ const SignupScreen = () => {
                   onChange={(e) => setContactNumber(e.target.value)}
                   minLength={8}
                   maxLength={8}
-                  required
                 />
               </InputGroup>
+               <small className="custom-inst">Leave blank if you don't have a contact number from a bhutanese internet service provider.</small>
             </Form.Group>
             <Form.Group controlId="contact-number" className="my-3">
               <Form.Label className="fw-semibold fs-4">
-                Contact Number:
+                Gender:
               </Form.Label>
               <Form.Select
                 required
@@ -224,9 +251,21 @@ const SignupScreen = () => {
               ></Form.Control>
             </Form.Group>
           </Col>
-          <Button type="submit" size="lg" className="button-custom w-25 mt-3">
+          {isLoading ? (
+          <Button type="submit" size="lg" className="button-custom fw-semibold w-25 mt-3" disabled>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          </Button>
+        ) : (
+          <Button type="submit" size="lg" className="button-custom fw-semibold w-25 mt-3">
             Sign Up
           </Button>
+        )}
         </Row>
       </Form>
       <Row className="py-3 justify-content-center">
