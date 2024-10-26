@@ -13,13 +13,16 @@ CREATE TABLE "User"(
 );
 
 
-
+-- include a account number and account name field, change spokenlanguages data type to JSONB
 CREATE TABLE Host(
     user_id INT PRIMARY KEY,            -- user_id as the primary key (one-to-one relationship with User)
     education VARCHAR(100),
-    spoken_languages TEXT,              -- Store multiple languages as a text string or JSON array
+    spoken_languages JSONB,              -- Store multiple languages as a text string or JSON array
     profession VARCHAR(100),
     date_of_birth DATE,
+    account_number INT NOT NULL,
+    account_holder_name VARCHAR(255) NOT NULL,
+    bank_name VARCHAR(255) NOT NULL,
     bio varchar(5000),
     FOREIGN KEY (user_id) REFERENCES "User"(user_id) ON DELETE CASCADE
 );
@@ -48,10 +51,10 @@ CREATE TABLE Homestays (
     rate  INT NOT NULL,   
     rules  JSONB,
     accomodation INT NOT NULL,
-    description VARCHAR(5000) NOT NULL,
     numreviews INT DEFAULT 0,
     rating DECIMAL(3,2) DEFAULT 0.00,
     isAvaliable BOOLEAN NOT NULL DEFAULT TRUE,  
+    description VARCHAR(5000) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES "User"(user_id) ON DELETE CASCADE
 );
 
@@ -107,6 +110,10 @@ ALTER COLUMN contact_number TYPE CHAR(8);
 
 DELETE FROM "User" WHERE user_id=14;
 DELETE FROM Homestays;
+
+DELETE FROM homestays WHERE homestay_id=11;
+DELETE FROM host WHERE user_id=11;
+UPDATE "User" SET ishost=FALSE WHERE user_id=11;
 
 SELECT * FROM "User";
 SELECT * FROM homestays;

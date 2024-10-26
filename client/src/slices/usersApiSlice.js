@@ -23,7 +23,22 @@ export const usersApiSlice= apiSlice.injectEndpoints({
                 method: 'POST',
             }),
         }),
+        createHost: builder.mutation({
+            query: (data)=>({
+                url: `${USER_URL}/host`,
+                method: 'POST',
+                body: data,
+            }),
+        }),
+        updateUserRole: builder.mutation({
+            query: (data)=>({
+                url: `${USER_URL}/${data.userId}`,
+                method: 'PUT',
+                body: data,
+            }),
+            invalidatesTags: ["User"],
+        }),
     })
 });
 
-export const {useLoginMutation, useRegisterMutation, useLogoutMutation}= usersApiSlice;
+export const {useLoginMutation, useRegisterMutation, useLogoutMutation, useCreateHostMutation, useUpdateUserRoleMutation}= usersApiSlice;

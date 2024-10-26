@@ -37,4 +37,12 @@ const admin= (req, res, next)=>{
     }
 };
 
-export {protect, admin};
+const user= (req, res, next)=>{
+    if(req.user && req.user.isHost){
+        res.status(401);
+        throw new Error('You can only list one property');
+    }else{
+        next();
+    }
+}
+export {protect, admin, user};

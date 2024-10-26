@@ -58,6 +58,7 @@ h1,
 h2,
 h3,
 h4,
+a,
 h5,
 h6,
 label,
@@ -65,7 +66,6 @@ button {
   font-family: var(--font-primary);
 }
 p,
-a,
 span,
 strong,
 input,
@@ -74,8 +74,24 @@ div,
 small {
   font-family: var(--font-secondary) !important;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+p,
+span,
+strong,
+input,
+select,
+div,
+small {
+  cursor: default;
+}
 
-body {
+body, main{
   background-color: #f5f5f5;
 }
 
@@ -248,5 +264,73 @@ footer {
         color: #aeaeae;
       }
     }
+  }
+}
+
+.form-back-btn{
+  background-color: transparent !important;
+  border: 2px solid var(--primary) !important;
+  color: var(--primary) !important;
+  &:hover{
+    background-color: var(--primary) !important;
+    color: #fff !important;
+  }
+}
+.custom-link{
+  color: var(--primary) !important;
+}
+.textarea-custom{
+  resize: none;
+  height: 250px;
+  font-size: 12px;
+  &::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background color of the track */
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary); /* Color of the thumb */
+    border-radius: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b13001; /* Color of the thumb on hover */
+    cursor: grabbing;
+  }
+}
+
+.image-upload{
+  border: 1px dashed #000;
+  height: 250px;
+  width: 500px;
+  background-image: url("../static_images/image_upload_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: contain; */
+  display: block;
+  margin-inline: auto;
+  padding: 2rem;
+  cursor: pointer;
+}
+.img-wrapper{
+  margin-top: 1rem !important;
+  button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  img{
+    height: 100px;
+    width: 100%;
+  }
+}
+.checkbox-custom{
+  gap: 0.5rem;
+  input{
+    width: 20px;
+    height: 20px;
   }
 }

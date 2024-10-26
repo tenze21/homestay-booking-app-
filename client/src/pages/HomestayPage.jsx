@@ -30,6 +30,8 @@ const HomestayPage = () => {
   const navigate=useNavigate();
 
   const { data: homestay, isLoading, error } = useGetHomestayDetailsQuery(homestayId);
+  console.log(homestay);
+  
   const checkoutHandler=()=>{
     navigate('/login?redirect=/payment')
   }
@@ -53,18 +55,18 @@ const HomestayPage = () => {
         <Col sm={12} md={12} lg={6}>
           <Row className="mb-3">
             <Col sm={12} md={12} lg={6}>
-              <Image src={homestay.images[1]} fluid />
+              <Image src={homestay.images[1]} fluid className="img-1"/>
             </Col>
             <Col sm={12} md={12} lg={6}>
-              <Image src={homestay.images[2]} fluid className="radius-top" />
+              <Image src={homestay.images[2]} fluid className="radius-top img-2" />
             </Col>
           </Row>
           <Row>
             <Col sm={12} md={12} lg={6}>
-              <Image src={homestay.images[1]} fluid />
+              <Image src={homestay.images[1]} fluid className="img-3"/>
             </Col>
             <Col sm={12} md={12} lg={6}>
-              <Image src={homestay.images[2]} fluid className="radius-bottom" />
+              <Image src={homestay.images[2]} fluid className="radius-bottom img-4" />
             </Col>
           </Row>
         </Col>

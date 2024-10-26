@@ -6,9 +6,9 @@ const Homestay=({homestay})=>{
     return(
         <Card className='my-3 rounded'>
                 <Link to={`/homestay/${homestay.homestay_id}`}>
-                    <Card.Img src={homestay.images[0]} variant='top' />
+                    <Card.Img src={homestay.images[0]} variant='top' className="card-img"/>
                 </Link>
-                <Card.Body>
+                <Card.Body className="card-body">
                     <Link to={`/homestay/${homestay.homestay_id}`} className="text-decoration-none">
                     <div className="d-flex justify-content-between">
                         <Card.Title as='div' className="homestay-title m-0">

@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import { getUserByEmailQuery, createUserQuery } from '../models/user.model.js';
+import { getUserByEmailQuery, createUserQuery, createHostQuery, updateUserRoleQuery } from '../models/user.model.js';
 import pool from "../server.js";
 import generateToken from '../utils/generateToken.js';
 import matchPassword from '../utils/matchPassword.js';
@@ -69,5 +69,33 @@ const logoutUser=asyncHandler(async(req, res)=>{
         expires: new Date(0),
     });
     res.status(200).json({message: 'Logged out successfully'});
-})
-export {loginUser, registerUser, logoutUser};
+});
+
+// @desc create Host
+// @route POST /api/users/host
+// @access Private
+const createHost= asyncHandler(async(req, res)=>{
+    const {userId, education, spokenLanguages, profession, dateOfBirth, accountNumber, accountHolderName, bankName, bio}= req.body;
+    const host= await pool.query(createHostQuery, [userId, education, JSON.stringify(spokenLanguages), profession, dateOfBirth, accountNumber, accountHolderName, bankName, bio]);
+    if(host){
+        res.status(201).json({message: "Details successfully added"});
+    }else{
+        res.status(400);
+        throw new Error("Invalid host data");
+    }
+});
+
+// @desc update user role
+// @route PUT /api/users/host
+// @access Private
+const updateUserRole= asyncHandler(async(req, res)=>{
+    const {userId, isHost}= req.body;
+    const updatedUser= await pool.query(updateUserRoleQuery, [isHost, userId]);
+    if(updatedUser){
+        res.status(200).json({message: "User role updated successfully"});
+    }else{
+        res.status(400);
+        throw new Error("Error updating user role");
+    }
+});
+export {loginUser, registerUser, logoutUser, createHost, updateUserRole};

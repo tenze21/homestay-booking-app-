@@ -25,7 +25,7 @@ function Header() {
       dispatch(logout());
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -38,7 +38,7 @@ function Header() {
         <>
         {userInfo.isHost !== true && (
           <div className="property-list">
-            <Link className="nav-link-custom" to="/list_property">
+            <Link className="nav-link-custom" to="/property_listing/basic_information">
               List Your Property
             </Link>
             <div className="tooltip-container">

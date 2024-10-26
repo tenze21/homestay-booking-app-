@@ -39,4 +39,7 @@ WHERE
 // retrieve homestays from database
 const getHomestaysQuery = `SELECT * FROM Homestays;`;
 
-export {getHomestaysQuery, getHomestayDetailQuery};
+// insert homestay into database
+const addHomestayQuery= `INSERT INTO Homestays (user_id, title, dzongkhag, gewog, latitude, longitude, facilities, rules, accomodation, check_in, check_out, description, rate, images) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *;`
+
+export {getHomestaysQuery, getHomestayDetailQuery, addHomestayQuery};

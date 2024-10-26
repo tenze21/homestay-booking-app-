@@ -30,21 +30,21 @@ const insertHomestays= async ()=>{
         console.error("erro inserting homestays: ", err);
     }
 };
-insertHomestays();
+// insertHomestays();
 
 const insertHosts= async ()=>{
-    const query= `INSERT INTO Host (user_id, education, spoken_languages, profession, date_of_birth, bio) VALUES ($1, $2, $3, $4, $5, $6)`;
+    const query= `INSERT INTO Host (user_id, education, spoken_languages, profession, date_of_birth, account_number, account_holder_name, bank_name, bio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
 
     try {
         for(const host of hosts){
-            await pool.query(query, [host.user_id, host.education, host.spoken_languages, host.profession, host.date_of_birth, host.bio]);
+            await pool.query(query, [host.user_id, host.education, host.spoken_languages, host.profession, host.date_of_birth, host.account_number, host.account_holder_name, host.bank_name, host.bio]);
         }
         console.log("hosts inserted successfully");
     } catch (err) {
-        console.error("erro inserting hosts: ", err);
+        console.error("error inserting hosts: ", err);
     }
 };
-// insertHosts();
+insertHosts();
 
 const insertReviews= async ()=>{
     const query= `INSERT INTO Reviews (user_id, homestay_id, review, rating) VALUES ($1, $2, $3, $4)`;

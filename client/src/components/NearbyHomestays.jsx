@@ -18,14 +18,12 @@ const NearbyHomestays=({homestays})=>{
                 .then(data=>{
                     if(data){
                         // console.log(data);
-                        // document.getElementById('location').textContent = `${data.address.county}, ${data.address.city}, ${data.address.country}`;
                         setCurrentLocation(data.address.county);
                     }else{
                         alert("Hmm... we couldn't find you location.");
                     }
                 })
                 .catch(error => {
-                    // document.getElementById('location').textContent = 'Error retrieving location name';
                     alert('Error:', error.message)
                     console.error('Error:', error);
                 });
