@@ -67,6 +67,9 @@ function ImageUpload({ setPage }) {
   const [logoutApiCall] = useLogoutMutation();
 
   const uploadImageHandler = async (e) => {
+    if(propertyImages.length<5){
+      return toast.error("Please select 5 images.");
+    }
     const formData = new FormData();
     propertyImages.forEach((image) => {
       formData.append("images", image);
@@ -159,7 +162,7 @@ function ImageUpload({ setPage }) {
               if (propertyImages.length + selectedFiles.length <= 5) {
                 setPropertyImages([...propertyImages, ...selectedFiles]);
               } else {
-                alert("You can only upload up to 5 images");
+                toast.error("You can only upload 5 images.");
               }
             }}
             required

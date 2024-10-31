@@ -40,7 +40,6 @@ function HostDetails({ setPage }) {
           </p>
           <Form.Control
             className="my-3"
-            inputMode="numeric"
             placeholder="Profession"
             value={profession}
             onChange={(e) => setProfession(e.target.value)}

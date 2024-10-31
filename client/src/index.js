@@ -4,6 +4,7 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./assets/styles/base.css";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoutes";
 import LoginPage from "./pages/LoginPage";
@@ -13,6 +14,10 @@ import HomestayPage from "./pages/HomestayPage";
 import BasicInformation from "./pages/BasicInformation";
 import ServiceSetup from "./pages/ServiceSetup.jsx";
 import FinishUp from "./pages/FinishUp.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
+import BookReservationPage from "./pages/BookReservationPage.jsx";
+import ReservationPage from "./pages/ReservationPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -40,6 +45,10 @@ const router = createBrowserRouter(
           element={<ServiceSetup />}
         />
         <Route path="/property_listing/finish_up" element={<FinishUp />} />
+        <Route path="/reservation/payment" element={<PaymentPage />} />
+        <Route path="/reservation/book" element={<BookReservationPage />} />
+        <Route path="/reservation/:id" element={<ReservationPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
     </Route>
   )
@@ -49,7 +58,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PayPalScriptProvider deferLoading={true}>
+        <RouterProvider router={router} />
+      </PayPalScriptProvider>
     </Provider>
   </React.StrictMode>
 );

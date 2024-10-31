@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="p-5">
+      <main className="p-5 position-relative">
         <Container fluid>
           <Outlet />
         </Container>

@@ -58,6 +58,36 @@ CREATE TABLE Homestays (
     FOREIGN KEY (user_id) REFERENCES "User"(user_id) ON DELETE CASCADE
 );
 
+CREATE TABLE Reservations(
+    reservation_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    homestay_id INT NOT NULL,
+    num_guests INT NOT NULL,
+    arrival_date date NOT NULL,
+    num_days INT NOT NULL,
+    payment_method VARCHAR(255) NOT NULL,
+    rate INT NOT NULL,
+    total_payment INT NOT NULL,
+    status VARCHAR(20) CHECK (status IN ('Pending', 'Completed', 'No show')) DEFAULT 'Pending',
+    isPaid BOOLEAN NOT NULL DEFAULT FALSE,
+    paidAt DATE,
+    isPaidAdmin BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES "User"(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (homestay_id) REFERENCES homestays(homestay_id) ON DELETE CASCADE
+);
+DROP TABLE reservations;
+
+CREATE TABLE Payment_details(
+    payment_id CHAR(17) PRIMARY KEY,
+    reservation_id INT NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    update_time VARCHAR(55) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id) ON DELETE CASCADE
+);
+DROP TABLE payment_details;
+
 CREATE TABLE Reviews (
     review_id SERIAL PRIMARY KEY,      
     user_id INT NOT NULL, 
@@ -68,6 +98,18 @@ CREATE TABLE Reviews (
     FOREIGN KEY (homestay_id) REFERENCES Homestays(homestay_id) ON DELETE CASCADE
 );
 
+CREATE TABLE Payment_details_admin(
+    Payment_id SERIAL PRIMARY KEY,
+    reservation_id INT NOT NULL,
+    total_amount INT NOT NULL,
+    amount_deducted INT NOT NULL,
+    amount_paid INT NOT NULL,
+    paid_at date NOT NULL,
+    transaction_id INT NOT NULL,
+    bank_name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id) ON DELETE CASCADE
+);
+DROP TABLE payment_details_admin;
 
 DROP TABLE "User";
 DROP TABLE Host;
@@ -102,16 +144,30 @@ ADD COLUMN title VARCHAR(245) NOT NULL;
 ALTER TABLE Homestays
 ADD COLUMN description VARCHAR(5000) NOT NULL; 
 
+ALTER TABLE Reservations
+ADD COLUMN status VARCHAR(20) CHECK (status IN ('Pending', 'Completed', 'No show')) DEFAULT 'Pending'; 
+
+ALTER TABLE Reservations
+ADD COLUMN isPaidAdmin BOOLEAN NOT NULL DEFAULT FALSE; 
+
+ALTER TABLE Reservations
+ADD COLUMN paidAt DATE;
+
+
 ALTER TABLE "User"
 ALTER COLUMN profile SET DEFAULT '/images/user/default-profile.jpg'; 
 
-ALTER TABLE "User"
-ALTER COLUMN contact_number TYPE CHAR(8);
+ALTER TABLE reservations
+ALTER COLUMN arrival_date TYPE DATE;
 
-DELETE FROM "User" WHERE user_id=14;
+
+DELETE FROM "User" WHERE user_id=18;
 DELETE FROM Homestays;
 
-DELETE FROM homestays WHERE homestay_id=11;
+ALTER TABLE Reservations
+ALTER COLUMN total_payment TYPE DECIMAL(10, 2);
+
+DELETE FROM reservations WHERE reservation_id<=3;
 DELETE FROM host WHERE user_id=11;
 UPDATE "User" SET ishost=FALSE WHERE user_id=11;
 
@@ -119,3 +175,7 @@ SELECT * FROM "User";
 SELECT * FROM homestays;
 SELECT * FROM Host;
 SELECT * FROM Reviews;
+SELECT * FROM Reservations;
+SELECT * FROM Payment_details;
+
+SELECT profile FROM "User" WHERE user_id = 20;

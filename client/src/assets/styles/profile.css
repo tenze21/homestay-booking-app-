@@ -1,0 +1,34 @@
+@import url('./variables.css');
+
+.custom-sidebar-link{
+    transition: var(--transition-hover);
+    &:hover{
+        background-color: var(--primary);
+        color: #fff;    
+    }
+}
+
+.profile-custom{
+    width: 120px;
+    height: 120px;
+}
+.profile-label{
+    position: absolute;
+    top: 5.5rem;
+    left: 6.5rem;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    transform: rotate(5deg);
+    cursor: pointer;
+    padding: 3px;
+    transition: var(--transition-hover);
+    &:hover{
+        background-color: #fff;
+    }
+}
+
+.profile-wrapper{
+    position: relative;
+    left: 15rem;
+    top: -3rem;
+}

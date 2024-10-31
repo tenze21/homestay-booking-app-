@@ -94,6 +94,9 @@ small {
 body, main{
   background-color: #f5f5f5;
 }
+main{
+  min-height: 70vh;
+}
 
 .navbar_custom {
   display: flex;
