@@ -7,6 +7,8 @@ const getUserDetailsQuery = `SELECT full_name, profile, email, contact_number, g
 const updateUserDetailQuery=`UPDATE "User" SET full_name = $1, profile = $2, email=$3, contact_number = $4, gender = $5, country = $6, region = $7 WHERE user_id = $8 RETURNING *;`;
 const updateHostDetailQuery=`UPDATE Host SET education = $1, spoken_languages = $2, profession = $3, date_of_birth = $4, account_number = $5, account_holder_name = $6, bank_name = $7, bio = $8 WHERE user_id = $9 RETURNING *;`;
 const getUserProfileQuery=`SELECT profile FROM "User" WHERE user_id = $1;`;
+const getUserPasswordQuery= `SELECT password FROM "User" WHERE user_id = $1;`;
+const updatePasswordQuery=`UPDATE "User" SET password = $1 WHERE user_id = $2 RETURNING *;`;
 
 export {
   getUserByEmailQuery,
@@ -17,5 +19,7 @@ export {
   getUserDetailsQuery,
   updateUserDetailQuery,
   updateHostDetailQuery,
-  getUserProfileQuery
+  getUserProfileQuery,
+  getUserPasswordQuery,
+  updatePasswordQuery
 };

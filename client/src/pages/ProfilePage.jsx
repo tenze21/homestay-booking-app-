@@ -8,12 +8,10 @@ import {
   Form,
   Image,
   Button,
-  Nav,
   InputGroup,
   Spinner,
 } from "react-bootstrap";
 import { MdEdit } from "react-icons/md";
-import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import CountriesList from "../components/CountriesList";
@@ -27,6 +25,7 @@ import {
   useUpdateProfileMutation,
 } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
+import ProfileSidebar from "../components/ProfileSidebar";
 
 function ProfilePage() {
   const { userInfo } = useSelector((state) => state.auth);
@@ -215,24 +214,7 @@ function ProfilePage() {
         className="border-end position-absolute h-100 top-0 start-0 ps-0 pe-0 pt-5 mb-5"
         style={{ backgroundColor: "white" }}
       >
-        <LinkContainer
-          to={"/profile"}
-          className="pb-2 pt-2 fs-4 fw-semibold ps-2 custom-sidebar-link"
-        >
-          <Nav.Link>Profile</Nav.Link>
-        </LinkContainer>
-        <LinkContainer
-          to={"/updatepassword"}
-          className="pb-2 pt-2 fs-4 fw-semibold ps-2 custom-sidebar-link"
-        >
-          <Nav.Link>Update Password</Nav.Link>
-        </LinkContainer>
-        <LinkContainer
-          to={"/user/reservation"}
-          className="pb-2 pt-2 fs-4 fw-semibold ps-2 custom-sidebar-link"
-        >
-          <Nav.Link>My Reservations</Nav.Link>
-        </LinkContainer>
+        <ProfileSidebar/>
       </Col>
       <Col md={10} className="profile-wrapper">
         {isLoading ? (

@@ -8,6 +8,8 @@ import {
   getUserDetailsQuery,
   updateUserDetailQuery,
   updateHostDetailQuery,
+  getUserPasswordQuery,
+  updatePasswordQuery,
 } from "../models/user.model.js";
 import pool from "../server.js";
 import generateToken from "../utils/generateToken.js";
@@ -187,7 +189,16 @@ const updateUserDetails = asyncHandler(async (req, res) => {
     userId,
   ]);
   if (updatedUser) {
-    res.status(200).json({fullName: updatedUser.rows[0].full_name, profile: updatedUser.rows[0].profile, email: updatedUser.rows[0].email, contactNumber: updatedUser.rows[0].contact_number, country: updatedUser.rows[0].country, region: updatedUser.rows[0].region });
+    res
+      .status(200)
+      .json({
+        fullName: updatedUser.rows[0].full_name,
+        profile: updatedUser.rows[0].profile,
+        email: updatedUser.rows[0].email,
+        contactNumber: updatedUser.rows[0].contact_number,
+        country: updatedUser.rows[0].country,
+        region: updatedUser.rows[0].region,
+      });
   } else {
     res.status(400);
     throw new Error("Error updating user details");
@@ -228,6 +239,32 @@ const updateHostDetails = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc Update password
+// @route PUT /api/users/:id/updatepassword
+// @access Private
+const updateUserPassword = asyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  const { currentPassword, newPassword } = req.body;
+  const salt = await bcrypt.genSalt(10);
+  const hashedPasswordnew = await bcrypt.hash(newPassword, salt);
+  const pass = await pool.query(getUserPasswordQuery, [userId]);
+  const isMatch = await matchPassword(currentPassword, pass.rows[0].password);
+
+  if (!isMatch) {
+    throw new Error("Wrong password");
+  }
+  const updatedPassword = await pool.query(updatePasswordQuery, [
+    hashedPasswordnew,
+    userId,
+  ]);
+  if (updatedPassword) {
+    res.status(200).json({ message: "Password updated successfully" });
+  } else {
+    res.status(400);
+    throw new Error("Error updating password");
+  }
+});
+
 export {
   loginUser,
   registerUser,
@@ -237,4 +274,5 @@ export {
   getUserDetails,
   updateUserDetails,
   updateHostDetails,
+  updateUserPassword,
 };

@@ -8,7 +8,8 @@ import {
   updateUserRole,
   getUserDetails,
   updateUserDetails,
-  updateHostDetails
+  updateHostDetails,
+  updateUserPassword
 } from "../controllers/user.controller.js";
 import { protect, admin } from "../middleware/authMiddleware.js";
 
@@ -19,5 +20,6 @@ router.route('/host').post(protect, createHost);
 router.route('/:id').put(protect, updateUserRole).get(protect, getUserDetails);
 router.route('/update/:id').put(protect, updateUserDetails);
 router.route('/host/:id').put(protect, updateHostDetails);
+router.route('/:id/updatepassword').put(protect, updateUserPassword);
 
 export default router;
