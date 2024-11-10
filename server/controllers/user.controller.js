@@ -10,6 +10,7 @@ import {
   updateHostDetailQuery,
   getUserPasswordQuery,
   updatePasswordQuery,
+  getUserReservationsQuery
 } from "../models/user.model.js";
 import pool from "../server.js";
 import generateToken from "../utils/generateToken.js";
@@ -19,7 +20,7 @@ import matchPassword from "../utils/matchPassword.js";
 // @route POST /api/users/login
 // @access Public
 const loginUser = asyncHandler(async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
   const { email, password } = req.body;
   const user = await pool.query(getUserByEmailQuery, [email]);
@@ -265,6 +266,15 @@ const updateUserPassword = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc GET user reservations
+// @route GET /api/users/:id/reservations
+// @access Private
+const getUserReservations= asyncHandler(async (req, res)=>{
+  const userId = req.params.id;
+  const reservations= await pool.query(getUserReservationsQuery, [userId]);
+  res.json(reservations.rows);
+});
+
 export {
   loginUser,
   registerUser,
@@ -275,4 +285,5 @@ export {
   updateUserDetails,
   updateHostDetails,
   updateUserPassword,
+  getUserReservations
 };

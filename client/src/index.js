@@ -19,6 +19,7 @@ import BookReservationPage from "./pages/BookReservationPage.jsx";
 import ReservationPage from "./pages/ReservationPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import PasswordUpdatePage from "./pages/PasswordUpdatePage.jsx";
+import UserReservationsPage from "./pages/UserReservationsPage.jsx";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -49,8 +50,9 @@ const router = createBrowserRouter(
         <Route path="/reservation/payment" element={<PaymentPage />} />
         <Route path="/reservation/book" element={<BookReservationPage />} />
         <Route path="/reservation/:id" element={<ReservationPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/updatepassword" element={<PasswordUpdatePage />} />
+        <Route path="/user/profile" element={<ProfilePage />} />
+        <Route path="/user/updatepassword" element={<PasswordUpdatePage />} />
+        <Route path="/user/reservations" element={<UserReservationsPage />} />
       </Route>
     </Route>
   )

@@ -4,19 +4,20 @@ import {
   Row,
   Col,
   ListGroup,
-  Image,
   Card,
-  Container
 } from "react-bootstrap";
+import { FaArrowLeft } from "react-icons/fa6";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 import { useGetReservationDetailsQuery, usePayReservationMutation, useGetPaypalClientIdQuery, useInsertPaymentDetailsMutation } from "../slices/reservationApiSlice";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 function ReservationPage() {
     const {id: reservationId} = useParams();
     const {data: reservationDetails, refetch, isLoading, error} = useGetReservationDetailsQuery(reservationId);
+
+    const navigate = useNavigate();
 
     const [payReservation, {isLoading: loadingPay}]= usePayReservationMutation();
 
@@ -81,7 +82,8 @@ function ReservationPage() {
     <Message variant="danger">{error?.data?.message || error.error}</Message>
   ) : (
     <>
-    <h1>Reservation ID: {reservationDetails.reservation_id}</h1>
+    <FaArrowLeft className="fs-1" onClick={()=>navigate('/user/reservations')} style={{cursor: "pointer"}}/>
+    <h1 className="mt-1">Reservation ID: {reservationDetails.reservation_id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">

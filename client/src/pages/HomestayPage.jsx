@@ -40,6 +40,10 @@ const HomestayPage = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const checkoutHandler = () => {
+    if (!userInfo) {
+      navigate(`/login?redirect=/homestay/${homestayId}`);
+      return;
+    }
     dispatch(
       saveDetails({
         homestayId,
@@ -51,7 +55,7 @@ const HomestayPage = () => {
         numberofDays,
       })
     );
-    navigate("/login?redirect=/reservation/payment");
+    navigate("/reservation/payment");
   };
 
   return (

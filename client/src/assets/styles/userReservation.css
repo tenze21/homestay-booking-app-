@@ -1,0 +1,11 @@
+@import url('./variables.css');
+
+.wrapper{
+    position: relative;
+    left: 15rem;
+    top: -3rem;
+}
+
+.cursor{
+    cursor: pointer !important;
+}

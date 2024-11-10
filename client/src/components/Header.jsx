@@ -69,7 +69,7 @@ function Header() {
             className="nav-dropdown-custom fs-4"
             title={userInfo.fullName}
           >
-            <Link to="/profile" className="profile-link">
+            <Link to="/user/profile" className="profile-link">
               <Image src={userInfo.profile} className="me-3" />
               Profile
             </Link>

@@ -73,6 +73,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data
       })
+    }),
+    getUserReservations: builder.query({
+      query: (userId)=>({
+        url: `${USER_URL}/${userId}/reservations`
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ["User"],
     })
   }),
 });
@@ -87,5 +94,6 @@ export const {
   useUpdateUserDetailMutation,
   useUpdateHostDetailMutation,
   useUpdateProfileMutation,
-  useUpdatePasswordMutation
+  useUpdatePasswordMutation,
+  useGetUserReservationsQuery
 } = usersApiSlice;

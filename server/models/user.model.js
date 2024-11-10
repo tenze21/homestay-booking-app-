@@ -9,6 +9,8 @@ const updateHostDetailQuery=`UPDATE Host SET education = $1, spoken_languages = 
 const getUserProfileQuery=`SELECT profile FROM "User" WHERE user_id = $1;`;
 const getUserPasswordQuery= `SELECT password FROM "User" WHERE user_id = $1;`;
 const updatePasswordQuery=`UPDATE "User" SET password = $1 WHERE user_id = $2 RETURNING *;`;
+const getUserReservationsQuery= `SELECT r.*, h.title FROM Reservations r JOIN Homestays h ON r.homestay_id = h.homestay_id WHERE r.user_id = $1;`;
+
 
 export {
   getUserByEmailQuery,
@@ -21,5 +23,6 @@ export {
   updateHostDetailQuery,
   getUserProfileQuery,
   getUserPasswordQuery,
-  updatePasswordQuery
+  updatePasswordQuery,
+  getUserReservationsQuery
 };
