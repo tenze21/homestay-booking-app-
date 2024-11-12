@@ -10,7 +10,8 @@ import {
   updateHostDetailQuery,
   getUserPasswordQuery,
   updatePasswordQuery,
-  getUserReservationsQuery
+  getUserReservationsQuery,
+  deleteHostQuery
 } from "../models/user.model.js";
 import pool from "../server.js";
 import generateToken from "../utils/generateToken.js";
@@ -275,6 +276,19 @@ const getUserReservations= asyncHandler(async (req, res)=>{
   res.json(reservations.rows);
 });
 
+// @desc delete host
+// @route DELETE /api/host/:id
+// @access Private/host
+const deleteHost= asyncHandler(async (req, res)=>{
+  const hostId= req.params.id;
+  
+  if(Number(hostId) !== req.user.user_id){
+    throw new Error('Unauthorized');
+  }
+  await pool.query(deleteHostQuery, [hostId]);
+  res.status(200).json({message: 'Host deleted successfully'});
+});
+
 export {
   loginUser,
   registerUser,
@@ -285,5 +299,6 @@ export {
   updateUserDetails,
   updateHostDetails,
   updateUserPassword,
-  getUserReservations
+  getUserReservations,
+  deleteHost
 };

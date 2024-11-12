@@ -7,6 +7,7 @@ import "./assets/styles/base.css";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoutes";
+import HostRoutes from "./components/HostRoutes.jsx";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
@@ -20,6 +21,7 @@ import ReservationPage from "./pages/ReservationPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import PasswordUpdatePage from "./pages/PasswordUpdatePage.jsx";
 import UserReservationsPage from "./pages/UserReservationsPage.jsx";
+import PropertyPage from "./pages/PropertyPage.jsx";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -53,6 +55,9 @@ const router = createBrowserRouter(
         <Route path="/user/profile" element={<ProfilePage />} />
         <Route path="/user/updatepassword" element={<PasswordUpdatePage />} />
         <Route path="/user/reservations" element={<UserReservationsPage />} />
+        <Route path="" element={<HostRoutes />}>
+          <Route path="/myproperty" element={<PropertyPage/>}/>
+        </Route>
       </Route>
     </Route>
   )

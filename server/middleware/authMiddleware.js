@@ -36,11 +36,20 @@ const admin= (req, res, next)=>{
 };
 
 const user= (req, res, next)=>{
-    if(req.user && req.user.isHost){
+    if(req.user && req.user.ishost){
         res.status(401);
         throw new Error('You can only list one property');
     }else{
         next();
     }
+};
+
+const host = (req, res, next)=>{
+    if(req.user && req.user.ishost){
+        next();
+    }else{
+        res.status(401);
+        throw new Error('Not authorized as host');
+    }
 }
-export {protect, admin, user};
+export {protect, admin, user, host};

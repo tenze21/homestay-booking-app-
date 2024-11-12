@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import uploadRoutes from "./routes/upload.homestay.route.js";
 import reservationRoutes from "./routes/reservation.router.js";
 import profileUpdateRoute from "./routes/upload.user.route.js";
+import homestayImageUpdateRoute from "./routes/imageUpdate.homestay.route.js";
 import { getExhangeRate } from "./controllers/reservation.controller.js";
 
 const app = express();
@@ -26,6 +27,7 @@ app.use("/api/homestay/upload", uploadRoutes);
 app.get("/api/config/paypal", (req, res) =>res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
 app.get("/api/currencyexchange", getExhangeRate);
 app.use("/api/user/upload", profileUpdateRoute);
+app.use("/api/homestay", homestayImageUpdateRoute);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();

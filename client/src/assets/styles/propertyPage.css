@@ -1,0 +1,24 @@
+@import url('./variables.css');
+
+.main_img{
+    width: 100%;
+    height: 515px;
+    border-radius: 10px 0 0 10px;
+}
+
+.sub_img{
+    height: 250px;
+    width: 100%;
+}
+
+.main-label{
+    bottom: 1rem;
+    right: 2rem;
+    cursor: pointer;
+}
+
+.label{
+    bottom: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}

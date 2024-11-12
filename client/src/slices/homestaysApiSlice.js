@@ -31,6 +31,32 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getHostHomestay: builder.query({
+      query: (hostId) => ({
+        url: `${HOMESTAYS_URL}/host/${hostId}`,
+      }),
+    }),
+    updateHomestayImage: builder.mutation({
+      query: ({homestayId, data})=>({
+        url: `/api/homestay/${homestayId._id}/updateImage`,
+        method: "POST",
+        body: data.formData
+      })
+    }),
+    updateHomestay: builder.mutation({
+      query: ({homestayId, data})=>({
+        url: `${HOMESTAYS_URL}/${homestayId._id}`,
+        method: "PUT",
+        body: data
+      })
+    }),
+    deleteHomestay: builder.mutation({
+      query: (homestayId)=>({
+        url: `${HOMESTAYS_URL}/${homestayId}`,
+        method: "DELETE"
+      }),
+      invalidatesTags: ["Homestay"],
+    })
   }),
 });
 
@@ -39,4 +65,8 @@ export const {
   useGetHomestayDetailsQuery,
   useCreateHomestayMutation,
   useUploadHomestayImageMutation,
+  useGetHostHomestayQuery,
+  useUpdateHomestayImageMutation,
+  useUpdateHomestayMutation,
+  useDeleteHomestayMutation
 } = productsApiSlice;

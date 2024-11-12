@@ -12,6 +12,7 @@ import { logout } from "../slices/authSlice";
 // Start of Selection
 function Header() {
   const { userInfo } = useSelector((state) => state.auth);
+  const navigationState= useSelector((state)=>state.navigationState);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -59,7 +60,13 @@ function Header() {
         {userInfo.isHost === true && (
             <div className="host-nav">
                 <ul className="host-nav-list">
-                    <li><Link to="/myproperty">Property</Link></li>
+                    <li>
+                      {navigationState===1? (
+                        <Link to="/myproperty" className="active-nav">Property</Link>
+                      ) : (
+                        <Link to="/myproperty">Property</Link>
+                      )}
+                    </li>
                     <li><Link to="/reservation">Reservations</Link></li>
                     <li><Link to="/reviews">Reviews</Link></li>
                 </ul>

@@ -29,7 +29,7 @@ function UserReservationsPage() {
         className="border-end position-absolute h-100 top-0 start-0 ps-0 pe-0 pt-5 mb-5"
         style={{ backgroundColor: "white" }}
       >
-        <ProfileSidebar/>
+        <ProfileSidebar reservations/>
       </Col>
       <Col md={10} className='wrapper'>
       {isLoading? (
@@ -53,8 +53,8 @@ function UserReservationsPage() {
                 <ListGroup.Item className='cursor border-bottom' style={{backgroundColor: "transparent"}}>
                   <Row className='cursor'>
                     <Col md={6}><h2 className='cursor fs-4'>{reservation.title}</h2></Col>
-                    <Col md={3}><p className='cursor'>{reservation.total_payment}</p></Col>
-                    <Col md={3}><p className='cursor'>{reservation.created_at}</p></Col>
+                    <Col md={3}><p className='cursor'>USD {reservation.total_payment}</p></Col>
+                    <Col md={3}><p className='cursor'>{reservation.created_at.split('T')[0]}</p></Col>
                   </Row>
                   {reservation.isPaid===false && <small className='text-danger fw-semibold'>Not paid</small>}
                 </ListGroup.Item>
@@ -64,8 +64,8 @@ function UserReservationsPage() {
                 <ListGroup.Item className='cursor border-bottom' style={{backgroundColor: "transparent"}}>
                   <Row className='cursor'>
                     <Col md={5}><h2 className='cursor fs-4'>{reservation.title}</h2></Col>
-                    <Col md={3}><p className='cursor'>{reservation.total_payment}</p></Col>
-                    <Col md={3}><p className='cursor'>{reservation.created_at}</p></Col>
+                    <Col md={3}><p className='cursor'>USD {reservation.total_payment}</p></Col>
+                    <Col md={3}><p className='cursor'>{reservation.created_at.split('T')[0]}</p></Col>
                     <Col md={1}><p className='cursor' title='completed'><FaCheck className='text-success'/></p></Col>
                   </Row>
                 </ListGroup.Item>

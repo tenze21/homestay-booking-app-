@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 // import homestays from "../data/homestays";
 import Homestay from "../components/Homestay.jsx";
@@ -6,9 +7,16 @@ import Loader from "../components/Loader.jsx";
 import Message from "../components/Message.jsx";
 import NearbyHomestays from "../components/NearbyHomestays.jsx";
 import { useGetHomestaysQuery } from "../slices/homestaysApiSlice.js";
+import { setNavigation } from "../slices/navigationSlice.js";
+import { useDispatch } from "react-redux";
 
 function HomePage() {
   const { data: homestays, isLoading, error } = useGetHomestaysQuery();
+  const dispatch= useDispatch();
+  useEffect(()=>{
+    dispatch(setNavigation(0));
+  },[dispatch]);
+  
   return (
     <>
       {isLoading ? (

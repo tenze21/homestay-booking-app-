@@ -80,6 +80,12 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
       providesTags: ["User"],
+    }),
+    deleteHost: builder.mutation({
+      query: (userId)=>({
+        url: `${USER_URL}/host/${userId}`,
+        method: "DELETE"
+      })
     })
   }),
 });
@@ -95,5 +101,6 @@ export const {
   useUpdateHostDetailMutation,
   useUpdateProfileMutation,
   useUpdatePasswordMutation,
-  useGetUserReservationsQuery
+  useGetUserReservationsQuery,
+  useDeleteHostMutation
 } = usersApiSlice;

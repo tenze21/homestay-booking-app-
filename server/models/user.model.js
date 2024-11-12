@@ -10,6 +10,7 @@ const getUserProfileQuery=`SELECT profile FROM "User" WHERE user_id = $1;`;
 const getUserPasswordQuery= `SELECT password FROM "User" WHERE user_id = $1;`;
 const updatePasswordQuery=`UPDATE "User" SET password = $1 WHERE user_id = $2 RETURNING *;`;
 const getUserReservationsQuery= `SELECT r.*, h.title FROM Reservations r JOIN Homestays h ON r.homestay_id = h.homestay_id WHERE r.user_id = $1;`;
+const deleteHostQuery= `DELETE FROM Host WHERE user_id = $1;`;
 
 
 export {
@@ -24,5 +25,6 @@ export {
   getUserProfileQuery,
   getUserPasswordQuery,
   updatePasswordQuery,
-  getUserReservationsQuery
+  getUserReservationsQuery,
+  deleteHostQuery
 };

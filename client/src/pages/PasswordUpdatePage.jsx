@@ -68,7 +68,7 @@ function PasswordUpdatePage() {
           className="border-end position-absolute h-100 top-0 start-0 ps-0 pe-0 pt-5 mb-5"
           style={{ backgroundColor: "white" }}
         >
-          <ProfileSidebar />
+          <ProfileSidebar passwordUpdate/>
         </Col>
         <Col
           md={10}

@@ -298,12 +298,23 @@ const HomestayPage = () => {
                         </Form.Group>
                       </ListGroup.Item>
                     </ListGroup>
-                    <Button
-                      type="submit"
-                      className="btn-block mt-3 reservation-btn"
-                    >
-                      Book a Reservation
-                    </Button>
+                    {userInfo._id===homestay.user_id? (
+                      <Button
+                        type="submit"
+                        className="btn-block mt-3 reservation-btn"
+                        disabled
+                        style={{backgroundColor: "#ff4500", pointerEvents:"auto", cursor: "not-allowed"}}
+                      >
+                        Book a Reservation
+                      </Button>
+                    ) : (
+                      <Button
+                        type="submit"
+                        className="btn-block mt-3 reservation-btn"
+                      >
+                        Book a Reservation
+                      </Button>
+                    )}
                   </Form>
                 </Card>
               ) : (

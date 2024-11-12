@@ -217,6 +217,9 @@ main{
     }
   }
 }
+.active-nav{
+  color: var(--primary) !important;
+}
 
 footer {
   display: flex;

@@ -26,9 +26,11 @@ import {
 } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import ProfileSidebar from "../components/ProfileSidebar";
+import { setNavigation } from "../slices/navigationSlice";
 
 function ProfilePage() {
   const { userInfo } = useSelector((state) => state.auth);
+  
   const {
     data: user,
     refetch,
@@ -66,6 +68,10 @@ function ProfilePage() {
   const [focus, setFocus] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(setNavigation(0));
+  },[dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -214,7 +220,7 @@ function ProfilePage() {
         className="border-end position-absolute h-100 top-0 start-0 ps-0 pe-0 pt-5 mb-5"
         style={{ backgroundColor: "white" }}
       >
-        <ProfileSidebar/>
+        <ProfileSidebar profile/>
       </Col>
       <Col md={10} className="profile-wrapper">
         {isLoading ? (

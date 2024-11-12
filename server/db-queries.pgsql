@@ -161,15 +161,15 @@ ALTER TABLE reservations
 ALTER COLUMN arrival_date TYPE DATE;
 
 
-DELETE FROM "User" WHERE user_id=18;
-DELETE FROM Homestays;
+DELETE FROM "User" WHERE user_id=20;
+DELETE FROM Homestays WHERE homestay_id=17;
 
 ALTER TABLE Reservations
 ALTER COLUMN total_payment TYPE DECIMAL(10, 2);
 
 DELETE FROM reservations WHERE reservation_id<=3;
 DELETE FROM host WHERE user_id=11;
-UPDATE "User" SET ishost=FALSE WHERE user_id=11;
+UPDATE "User" SET ishost=FALSE WHERE user_id=8;
 
 SELECT * FROM "User";
 SELECT * FROM homestays;
@@ -177,5 +177,7 @@ SELECT * FROM Host;
 SELECT * FROM Reviews;
 SELECT * FROM Reservations;
 SELECT * FROM Payment_details;
+
+DELETE FROM HOST WHERE user_id=8;
 
 SELECT profile FROM "User" WHERE user_id = 20;
