@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/propertyPage.css";
 import { Row, Col, Image, Button, Form, InputGroup } from "react-bootstrap";
-import {Spinner} from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { FaCamera } from "react-icons/fa6";
 import Loader from "../components/Loader";
@@ -12,6 +12,7 @@ import {
   useGetHostHomestayQuery,
   useUpdateHomestayImageMutation,
   useUpdateHomestayMutation,
+  useUpdateAvailabilityMutation,
 } from "../slices/homestaysApiSlice";
 import { setNavigation } from "../slices/navigationSlice";
 
@@ -27,12 +28,13 @@ function PropertyPage() {
     useUpdateHomestayImageMutation();
   const [updateHomestay, { isLoading: loadingUpdate }] =
     useUpdateHomestayMutation();
+  const [updateAvailability] = useUpdateAvailabilityMutation();
 
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(setNavigation(1))
-  },[dispatch]);
+  useEffect(() => {
+    dispatch(setNavigation(1));
+  }, [dispatch]);
 
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
@@ -115,6 +117,16 @@ function PropertyPage() {
     }
   };
 
+  const updateAvailabilityHandler= async ()=>{
+    try {
+      await updateAvailability({homestayId: homestay.homestay_id, isAvailable: !homestay.isavaliable}).unwrap();
+      toast.success("Your homestay is now " + (homestay.isavaliable ? "unavailable " : "available ") + "for reservation.");
+      refetch();
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  }
+
   return (
     <main>
       {isLoading || loadingUpload ? (
@@ -126,6 +138,14 @@ function PropertyPage() {
       ) : (
         <>
           <Form className="border-bottom" onSubmit={submitHandler}>
+            <Form.Check
+              type="switch"
+              label="Active"
+              className="mb-3 position-relative fw-semibold fs-3"
+              style={{ color: "#ff4500", left: "80vw" }}
+              checked={homestay.isavaliable}
+              onChange={updateAvailabilityHandler}
+            />
             <Row>
               <Col sm={12} md={12} lg={6} className="position-relative">
                 <Image src={images[0]} fluid className="main_img" />
@@ -620,7 +640,9 @@ function PropertyPage() {
             <h2 className="fw-semibold mb-4" style={{ color: "red" }}>
               Dangerzone:
             </h2>
-            <Button variant="danger" onClick={() => setModalShow(true)}>Delete Property</Button>
+            <Button variant="danger" onClick={() => setModalShow(true)}>
+              Delete Property
+            </Button>
           </section>
           <ConfirmationModal
             show={modalShow}

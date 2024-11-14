@@ -67,8 +67,16 @@ function Header() {
                         <Link to="/myproperty">Property</Link>
                       )}
                     </li>
-                    <li><Link to="/reservation">Reservations</Link></li>
-                    <li><Link to="/reviews">Reviews</Link></li>
+                    {navigationState===2? (
+                      <li><Link to="/reservations" className="active-nav">Reservations</Link></li>
+                    ) : (
+                      <li><Link to="/reservations">Reservations</Link></li>
+                    )}
+                    {navigationState===3? (
+                      <li><Link to="/reviews" className="active-nav">Reviews</Link></li>
+                    ) : (
+                      <li><Link to="/reviews">Reviews</Link></li>
+                    )}
                 </ul>
             </div>
         )}

@@ -8,11 +8,11 @@ import {
 import '../assets/styles/userReservation.css';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FaCheck } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import ProfileSidebar from '../components/ProfileSidebar';
 import { useGetUserReservationsQuery } from '../slices/usersApiSlice';
-import { useGetHomestayDetailsQuery } from '../slices/homestaysApiSlice';
 
 function UserReservationsPage() {
   const {userInfo}= useSelector((state)=>state.auth);
@@ -57,6 +57,17 @@ function UserReservationsPage() {
                     <Col md={3}><p className='cursor'>{reservation.created_at.split('T')[0]}</p></Col>
                   </Row>
                   {reservation.isPaid===false && <small className='text-danger fw-semibold'>Not paid</small>}
+                </ListGroup.Item>
+              </LinkContainer>
+            ) : reservation.status==='No show'? (
+              <LinkContainer key={reservation.reservation_id} to={`/reservation/${reservation.reservation_id}`} className='cursor'>
+                <ListGroup.Item className='cursor border-bottom' style={{backgroundColor: "transparent"}}>
+                  <Row className='cursor'>
+                    <Col md={5}><h2 className='cursor fs-4'>{reservation.title}</h2></Col>
+                    <Col md={3}><p className='cursor'>USD {reservation.total_payment}</p></Col>
+                    <Col md={3}><p className='cursor'>{reservation.created_at.split('T')[0]}</p></Col>
+                    <Col md={1}><p className='cursor' title='No show'><MdClose className='text-danger'/></p></Col>
+                  </Row>
                 </ListGroup.Item>
               </LinkContainer>
             ) : (

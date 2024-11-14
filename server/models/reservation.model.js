@@ -31,9 +31,22 @@ JOIN
 WHERE 
     r.reservation_id = $1`;
 
+// get homestay reservations
+const getHomestayReservationsQuery = `
+    SELECT *
+    FROM Reservations r
+    JOIN "User" u ON r.user_id = u.user_id
+    WHERE r.homestay_id = $1 AND r.isPaid = TRUE;
+`;
+
+// update reservation status
+const updateReservationStatusQuery= `UPDATE Reservations SET status=$1 WHERE reservation_id=$2 RETURNING *;`;
+
 export {
   createReservationQuery,
   insertPaymentDetailsQuery,
   updateIsPaidQuery,
   getReservationByIdQuery,
+  getHomestayReservationsQuery,
+  updateReservationStatusQuery
 };

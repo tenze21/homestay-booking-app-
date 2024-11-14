@@ -7,10 +7,11 @@ import {
   updateHomestay,
   getHostHomestay,
   deleteHomestay,
+  updateAvailability
 } from "../controllers/homestay.controller.js";
 import { user, host, protect } from "../middleware/authMiddleware.js";
 
-router.route("/").get(getHomestays).post(protect, user, createHomestay);
+router.route("/").get(getHomestays).post(protect, user, createHomestay).put(protect, host, updateAvailability);
 router
   .route("/:id")
   .get(getHomestayById)

@@ -54,6 +54,9 @@ const getHostHomeStayQuery = `SELECT * FROM Homestays WHERE user_id = $1;`;
 // Delete homestay
 const deleteHomestayQuery = `DELETE FROM Homestays WHERE homestay_id = $1;`;
 
+// update homestay availability
+const updateAvailabilityQuery= `UPDATE Homestays SET isavaliable=$1 WHERE homestay_id=$2 RETURNING *;`;
+
 export {
   getHomestaysQuery,
   getHomestayDetailQuery,
@@ -61,5 +64,6 @@ export {
   getHomestayByIdQuery,
   updateHomestayQuery,
   getHostHomeStayQuery,
-  deleteHomestayQuery
+  deleteHomestayQuery,
+  updateAvailabilityQuery,
 };

@@ -5,7 +5,10 @@ import {
   insertPaymentDetailsQuery,
   updateIsPaidQuery,
   getReservationByIdQuery,
+  getHomestayReservationsQuery,
+  updateReservationStatusQuery
 } from "../models/reservation.model.js";
+import { getHomestayByIdQuery } from "../models/homestay.model.js";
 import currencyapi from "@everapi/currencyapi-js";
 
 // @desc create reservation
@@ -115,10 +118,48 @@ const getExhangeRate = asyncHandler(async (req, res) => {
     });
 });
 
+// @desc Get homestay reservations
+// @route GET /api/reservation/homestay/:id
+// @access Private/host
+const getHomestayReservations= asyncHandler(async (req, res)=>{
+  const homestayId= req.params.id;
+  const homestay= await pool.query(getHomestayByIdQuery, [homestayId]);
+  
+  if(homestay.rows[0].user_id!==req.user.user_id){
+    return res.status(401).json({message: "Unauthorized"});
+  }
+  const reservations= await pool.query(getHomestayReservationsQuery, [homestayId]);
+  res.status(200).json(reservations.rows);
+});
+
+// @desc update reservation status
+// @route PUT /api/reservation/status/:id?homestayId=
+// @access Private/host
+const updateReservationStatus=asyncHandler(async (req, res)=>{
+  const reservationId= req.params.id;
+  const homestayId= req.query.homestayId;
+  const homestay= await pool.query(getHomestayByIdQuery, [homestayId]);
+
+  const {status}= req.body;
+
+  if(homestay.rows[0].user_id!==req.user.user_id){
+    return res.status(401).json({message: "Unauthorized"});
+  }
+  const reservation= await pool.query(updateReservationStatusQuery, [status, reservationId]);
+  if(reservation.rows[0].length===0){
+    res.status(400);
+    throw new Error("Reservation not found");
+  }else{
+    res.json({message: "Rservation status updated successfully"});
+  }
+});
+
 export {
   createReservation,
   insertPaymentDetails,
   updateReservationToPaid,
   getExhangeRate,
   getReservationById,
+  getHomestayReservations,
+  updateReservationStatus
 };

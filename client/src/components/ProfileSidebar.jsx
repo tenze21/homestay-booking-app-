@@ -8,7 +8,7 @@ function ProfileSidebar({ profile, passwordUpdate, reservations }) {
       {profile ? (
         <LinkContainer
           to={"/user/profile"}
-          className="pb-2 pt-2 fs-4 fw-semibold ps-2 active"
+          className="pb-2 pt-2 fs-4 fw-semibold ps-2 active-link"
         >
           <Nav.Link>Profile</Nav.Link>
         </LinkContainer>
@@ -23,7 +23,7 @@ function ProfileSidebar({ profile, passwordUpdate, reservations }) {
       {passwordUpdate ? (
         <LinkContainer
           to={"/user/updatepassword"}
-          className="pb-2 pt-2 fs-4 fw-semibold ps-2 active"
+          className="pb-2 pt-2 fs-4 fw-semibold ps-2 active-link"
         >
           <Nav.Link>Update Password</Nav.Link>
         </LinkContainer>
@@ -38,7 +38,7 @@ function ProfileSidebar({ profile, passwordUpdate, reservations }) {
       {reservations ? (
         <LinkContainer
           to={"/user/reservations"}
-          className="pb-2 pt-2 fs-4 fw-semibold ps-2 active"
+          className="pb-2 pt-2 fs-4 fw-semibold ps-2 active-link"
         >
           <Nav.Link>My Reservations</Nav.Link>
         </LinkContainer>

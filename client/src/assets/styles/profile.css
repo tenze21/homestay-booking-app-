@@ -8,7 +8,7 @@
     }
 }
 
-.active{
+.active-link{
     background-color: var(--primary);
     color: #fff;
     &:hover{

@@ -22,6 +22,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import PasswordUpdatePage from "./pages/PasswordUpdatePage.jsx";
 import UserReservationsPage from "./pages/UserReservationsPage.jsx";
 import PropertyPage from "./pages/PropertyPage.jsx";
+import HomestayReservationsPage from "./pages/HomestayReservationsPage.jsx";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -57,6 +58,7 @@ const router = createBrowserRouter(
         <Route path="/user/reservations" element={<UserReservationsPage />} />
         <Route path="" element={<HostRoutes />}>
           <Route path="/myproperty" element={<PropertyPage/>}/>
+          <Route path="/reservations" element={<HomestayReservationsPage/>}/>
         </Route>
       </Route>
     </Route>

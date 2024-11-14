@@ -56,7 +56,15 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         method: "DELETE"
       }),
       invalidatesTags: ["Homestay"],
-    })
+    }),
+    updateAvailability: builder.mutation({
+      query: (data)=>({
+        url: `${HOMESTAYS_URL}`,
+        method: "PUT",
+        body: data
+      }),
+      invalidatesTags: ["Homestay"]
+    }),
   }),
 });
 
@@ -68,5 +76,6 @@ export const {
   useGetHostHomestayQuery,
   useUpdateHomestayImageMutation,
   useUpdateHomestayMutation,
-  useDeleteHomestayMutation
+  useDeleteHomestayMutation,
+  useUpdateAvailabilityMutation
 } = productsApiSlice;
