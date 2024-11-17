@@ -95,8 +95,11 @@ CREATE TABLE Reviews (
     review VARCHAR(1000) NOT NULL,
     rating INT NOT NULL,     
     FOREIGN KEY (user_id) REFERENCES "User"(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (homestay_id) REFERENCES Homestays(homestay_id) ON DELETE CASCADE
+    FOREIGN KEY (homestay_id) REFERENCES Homestays(homestay_id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE Reviews;
 
 CREATE TABLE Payment_details_admin(
     Payment_id SERIAL PRIMARY KEY,

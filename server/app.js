@@ -11,6 +11,7 @@ import uploadRoutes from "./routes/upload.homestay.route.js";
 import reservationRoutes from "./routes/reservation.router.js";
 import profileUpdateRoute from "./routes/upload.user.route.js";
 import homestayImageUpdateRoute from "./routes/imageUpdate.homestay.route.js";
+import reviewRoutes from "./routes/review.router.js";
 import { getExhangeRate } from "./controllers/reservation.controller.js";
 
 const app = express();
@@ -28,6 +29,7 @@ app.get("/api/config/paypal", (req, res) =>res.send({clientId: process.env.PAYPA
 app.get("/api/currencyexchange", getExhangeRate);
 app.use("/api/user/upload", profileUpdateRoute);
 app.use("/api/homestay", homestayImageUpdateRoute);
+app.use("/api/reviews", reviewRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();

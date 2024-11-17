@@ -21,6 +21,8 @@ import Message from "../components/Message";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetHomestayDetailsQuery } from "../slices/homestaysApiSlice";
 import { saveDetails } from "../slices/reservationSlice";
+import { useGetReviewsQuery } from "../slices/reviewsApiSlice";
+import ReviewModal from "../components/ReviewModal";
 
 const HomestayPage = () => {
   const { id: homestayId } = useParams();
@@ -28,6 +30,7 @@ const HomestayPage = () => {
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [arrivalDate, setArrivalDate] = useState("");
   const [numberofDays, setNumberofDays] = useState();
+  const [modalShow, setModalShow] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,6 +40,13 @@ const HomestayPage = () => {
     isLoading,
     error,
   } = useGetHomestayDetailsQuery(homestayId);
+
+  const {
+    data: reviews,
+    isLoading: loadingReview,
+    refetch,
+    error: reviewError,
+  } = useGetReviewsQuery(homestayId);
   const { userInfo } = useSelector((state) => state.auth);
 
   const checkoutHandler = () => {
@@ -298,12 +308,16 @@ const HomestayPage = () => {
                         </Form.Group>
                       </ListGroup.Item>
                     </ListGroup>
-                    {userInfo._id===homestay.user_id? (
+                    {userInfo?._id === homestay.user_id ? (
                       <Button
                         type="submit"
                         className="btn-block mt-3 reservation-btn"
                         disabled
-                        style={{backgroundColor: "#ff4500", pointerEvents:"auto", cursor: "not-allowed"}}
+                        style={{
+                          backgroundColor: "#ff4500",
+                          pointerEvents: "auto",
+                          cursor: "not-allowed",
+                        }}
                       >
                         Book a Reservation
                       </Button>
@@ -336,6 +350,84 @@ const HomestayPage = () => {
               )}
             </Col>
           </Row>
+          <ListGroup>
+            <Row>
+              <h3 className="fs-3 mb-3 fw-semibold">Reviews</h3>
+            </Row>
+            <Row>
+              {loadingReview ? (
+                <Loader />
+              ) : reviewError ? (
+                <Message variant={"danger"}>
+                  {reviewError?.data?.message || error.error}
+                </Message>
+              ) : (
+                <>
+                  {reviews.length === 0 && (
+                    <h3 className="fs-1 fw-bold text-secondary opacity-50">
+                      No reviews to show yet.
+                    </h3>
+                  )}
+                  {reviews.map((review) => (
+                    <Col as={"article"} md={6} className="mb-3">
+                      <ListGroup.Item
+                        key={review.review_id}
+                        className="border-0"
+                        style={{ backgroundColor: "transparent" }}
+                      >
+                        <Row className="align-items-center">
+                          <Col md={2} className="p-0" style={{ width: "60px" }}>
+                            <Image
+                              src={review.profile}
+                              className="rounded-circle"
+                              style={{ width: "50px", height: "50px" }}
+                            />
+                          </Col>
+                          <Col md={9} className="ps-3">
+                            <p className="m-0 fw-semibold">
+                              {review.full_name}
+                            </p>
+                            <p className="m-0 fw-semibold text-muted">
+                              {review.country}, {review.region}
+                            </p>
+                          </Col>
+                        </Row>
+                        <p className="mt-2 mb-0 fw-semibold fs-5">
+                          {review.rating}(<FaStar />)
+                        </p>
+                        <p className="mb-1">{review.review}</p>
+                        <p className="fw-semibold text-muted">
+                          {review.created_at.split("T")[0]}
+                        </p>
+                      </ListGroup.Item>
+                    </Col>
+                  ))}
+                </>
+              )}
+            </Row>
+          </ListGroup>
+          {userInfo?._id !== homestay.user_id && (
+            <Button
+              className="border-0 rounded-circle fs-3 position-fixed"
+              style={{
+                backgroundColor: "#ff4500",
+                padding: "0 13px",
+                right: "70px",
+                top: "70vh",
+              }}
+              title="Drop a review"
+              onClick={() => setModalShow(true)}
+            >
+              +
+            </Button>
+          )}
+          <ReviewModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            setModalShow={setModalShow}
+            homestayId={homestayId}
+            refetch={refetch}
+          />
         </>
       )}
     </>

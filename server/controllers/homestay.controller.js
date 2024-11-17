@@ -7,8 +7,10 @@ import {
   getHostHomeStayQuery,
   deleteHomestayQuery,
   updateAvailabilityQuery,
+  updateRatingReviewQuery,
 } from "../models/homestay.model.js";
 import asyncHandler from "../middleware/asyncHandler.js";
+import { getReviewsQuery } from "../models/review.model.js";
 
 // @desc get homestays
 // @route GET /api/homestays
@@ -128,12 +130,42 @@ const deleteHomestay = asyncHandler(async (req, res) => {
 // @access Private/host
 const updateAvailability = asyncHandler(async (req, res) => {
   const { homestayId, isAvailable } = req.body;
-  const updatedHomestay=await pool.query(updateAvailabilityQuery, [isAvailable, homestayId]);
-  if(updatedHomestay){
-    res.status(200).json({message: "Homestay availability updated successfully"});
-  }else{
+  const updatedHomestay = await pool.query(updateAvailabilityQuery, [
+    isAvailable,
+    homestayId,
+  ]);
+  if (updatedHomestay) {
+    res
+      .status(200)
+      .json({ message: "Homestay availability updated successfully" });
+  } else {
     res.status(400);
     throw new Error("Couldn't find homestay");
+  }
+});
+
+const updateRatingAndReview = asyncHandler(async (req, res) => {
+  const homestayId = req.query.homestayId;
+
+  const reviews = await pool.query(getReviewsQuery, [homestayId]);
+
+  let totalRating = 0;
+  reviews.rows.forEach((review) => {
+    totalRating += review.rating;
+  });
+  const averageRating = totalRating / reviews.rows.length;
+
+  const updatedHomestay = await pool.query(updateRatingReviewQuery, [
+    averageRating,
+    reviews.rows.length,
+    homestayId,
+  ]);
+
+  if (updatedHomestay.rows.length > 0) {
+    res.json({ message: "Review added successfully" });
+  } else {
+    res.status(400);
+    throw new Error("Failed to update homestay");
   }
 });
 
@@ -144,5 +176,6 @@ export {
   updateHomestay,
   getHostHomestay,
   deleteHomestay,
-  updateAvailability
+  updateAvailability,
+  updateRatingAndReview,
 };

@@ -340,3 +340,33 @@ footer {
     height: 20px;
   }
 }
+
+.review-label{
+  border-radius: 50%;
+  background-color: #aeaeae;
+  padding: 11px 18px;
+  font-weight: var(--font-weight-semi-bold);
+  cursor: pointer;
+  transition: var(--transition-hover);
+  &:hover{
+    background-color: var(--primary);
+    color: #fff;
+  }
+}
+
+input[type="radio"]{
+  &:checked + label{
+    background-color: var(--primary);
+    color: #fff;
+  }
+}
+
+.review-textarea{
+  resize: none;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 1.5rem;
+  height: 200px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
