@@ -23,6 +23,8 @@ import PasswordUpdatePage from "./pages/PasswordUpdatePage.jsx";
 import UserReservationsPage from "./pages/UserReservationsPage.jsx";
 import PropertyPage from "./pages/PropertyPage.jsx";
 import HomestayReservationsPage from "./pages/HomestayReservationsPage.jsx";
+import HostReviewsPage from "./pages/HostReviewsPage.jsx";
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -59,6 +61,7 @@ const router = createBrowserRouter(
         <Route path="" element={<HostRoutes />}>
           <Route path="/myproperty" element={<PropertyPage/>}/>
           <Route path="/reservations" element={<HomestayReservationsPage/>}/>
+          <Route path="/reviews" element={<HostReviewsPage/>}/>
         </Route>
       </Route>
     </Route>

@@ -182,5 +182,6 @@ SELECT * FROM Reservations;
 SELECT * FROM Payment_details;
 
 DELETE FROM HOST WHERE user_id=8;
+DELETE FROM Reviews WHERE review_id=4;
 
 SELECT profile FROM "User" WHERE user_id = 20;
