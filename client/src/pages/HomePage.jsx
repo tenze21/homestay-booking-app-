@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 // import homestays from "../data/homestays";
 import Homestay from "../components/Homestay.jsx";
 import "../assets/styles/homePage.css";
+import Meta from "../components/Meta.jsx";
 import Loader from "../components/Loader.jsx";
 import Message from "../components/Message.jsx";
 import NearbyHomestays from "../components/NearbyHomestays.jsx";
@@ -27,6 +28,7 @@ function HomePage() {
         </Message>
       ) : (
         <>
+        <Meta/>
           <NearbyHomestays homestays={homestays}/>
           <h1 className="fs-3">Homestays Across Bhutan</h1>
           <Row as="section">
