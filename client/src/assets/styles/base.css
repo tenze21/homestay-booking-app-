@@ -355,7 +355,7 @@ footer {
 }
 
 input[type="radio"]{
-  &:checked + label{
+  &:checked + .review-label{
     background-color: var(--primary);
     color: #fff;
   }

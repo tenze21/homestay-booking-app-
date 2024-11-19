@@ -83,7 +83,7 @@ function BookReservationPage() {
         arrivalDate,
         numDays: numberofDays,
         paymentMethod,
-        totalPayment: tamount,
+        totalPayment: Number(tamount),
       }).unwrap();
       localStorage.removeItem("reservationInfo");
       navigate(`/reservation/${res.reservation_id}`);

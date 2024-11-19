@@ -67,7 +67,7 @@ CREATE TABLE Reservations(
     num_days INT NOT NULL,
     payment_method VARCHAR(255) NOT NULL,
     rate INT NOT NULL,
-    total_payment INT NOT NULL,
+    total_payment DECIMAL(10, 2),
     status VARCHAR(20) CHECK (status IN ('Pending', 'Completed', 'No show')) DEFAULT 'Pending',
     isPaid BOOLEAN NOT NULL DEFAULT FALSE,
     paidAt DATE,
