@@ -4,6 +4,7 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./assets/styles/base.css";
+import { HelmetProvider } from "react-helmet-async";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoutes";
@@ -59,9 +60,9 @@ const router = createBrowserRouter(
         <Route path="/user/updatepassword" element={<PasswordUpdatePage />} />
         <Route path="/user/reservations" element={<UserReservationsPage />} />
         <Route path="" element={<HostRoutes />}>
-          <Route path="/myproperty" element={<PropertyPage/>}/>
-          <Route path="/reservations" element={<HomestayReservationsPage/>}/>
-          <Route path="/reviews" element={<HostReviewsPage/>}/>
+          <Route path="/myproperty" element={<PropertyPage />} />
+          <Route path="/reservations" element={<HomestayReservationsPage />} />
+          <Route path="/reviews" element={<HostReviewsPage />} />
         </Route>
       </Route>
     </Route>
@@ -71,11 +72,13 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PayPalScriptProvider deferLoading={true}>
-        <RouterProvider router={router} />
-      </PayPalScriptProvider>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <PayPalScriptProvider deferLoading={true}>
+          <RouterProvider router={router} />
+        </PayPalScriptProvider>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

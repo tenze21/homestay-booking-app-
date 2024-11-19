@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 // import homestays from "../data/homestays";
 import Homestay from "../components/Homestay.jsx";
 import "../assets/styles/homePage.css";
+import Meta from "../components/Meta.jsx";
 import Loader from "../components/Loader.jsx";
 import Message from "../components/Message.jsx";
 import NearbyHomestays from "../components/NearbyHomestays.jsx";
@@ -12,11 +13,11 @@ import { useDispatch } from "react-redux";
 
 function HomePage() {
   const { data: homestays, isLoading, error } = useGetHomestaysQuery();
-  const dispatch= useDispatch();
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  useEffect(() => {
     dispatch(setNavigation(0));
-  },[dispatch]);
-  
+  }, [dispatch]);
+
   return (
     <>
       {isLoading ? (
@@ -27,7 +28,8 @@ function HomePage() {
         </Message>
       ) : (
         <>
-          <NearbyHomestays homestays={homestays}/>
+          <Meta />
+          <NearbyHomestays homestays={homestays} />
           <h1 className="fs-3">Homestays Across Bhutan</h1>
           <Row as="section">
             {homestays.map((homestay) => {
