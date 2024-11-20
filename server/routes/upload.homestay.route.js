@@ -37,7 +37,7 @@ router.post("/", (req,res)=>{
             return res.status(400).send({message: err.message});
         };
 
-        const filePaths= req.files.map((file)=>`/uploads/homestays/${file.filename}`);
+        const filePaths= req.files.map((file)=>`/homestays/${file.filename}`);
 
         res.status(200).send({
             message:"Images uploaded successfully!",

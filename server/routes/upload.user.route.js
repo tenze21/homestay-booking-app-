@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
     }
     res.status(200).send({
       message: "Profile uploaded successfully. Please save changes.",
-      image: `/${req.file.path}`,
+      image: `/users/${req.file.filename}`,
     });
   });
 });

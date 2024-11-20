@@ -58,7 +58,7 @@ router.post("/:id/updateImage", (req, res) => {
     }
     res.status(200).send({
       message: "Image uploaded successfully. Please save changes.",
-      image: `/${req.file.path}`,
+      image: `/homestays/${req.file.filename}`,
     });
   });
 });
