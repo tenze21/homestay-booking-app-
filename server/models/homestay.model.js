@@ -9,6 +9,7 @@ const getHomestayDetailQuery = `SELECT
     H.spoken_languages,
     H.profession,
     H.date_of_birth,
+    H.spoken_languages,
     H.bio,
     HS.homestay_id,
     HS.dzongkhag,

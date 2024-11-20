@@ -13,13 +13,13 @@ const pool = new Pool({
   port: 5432, 
 });
 
-// pool.query("SELECT NOW()", (err, res) => {
-//   if (err) {
-//     console.error("Error connecting to database:", err);
-//   } else {
-//     console.log("Database connection successful:", res.rows[0].now);
-//   }
-// });
+pool.query("SELECT NOW()", (err, res) => {
+  if (err) {
+    console.error("Error connecting to database:", err);
+  } else {
+    console.log("Database connection successful:", res.rows[0].now);
+  }
+});
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
