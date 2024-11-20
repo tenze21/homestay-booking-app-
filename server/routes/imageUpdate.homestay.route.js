@@ -40,22 +40,11 @@ const upload = multer({ storage, fileFilter });
 const uploadHomestayImage = upload.single("image");
 
 router.post("/:id/updateImage", (req, res) => {
-    let homestayId = req.params.id;
   uploadHomestayImage(req, res, async function (err) {
     if (err) {
       return res.status(400).send({ message: err.message });
     }
     
-    const homestay = await pool.query(getHomestayByIdQuery, [homestayId]);
-    const { imageIndex } = req.body;
-    
-    const imagePath = homestay.rows[0].images[imageIndex];
-
-    try {
-      fs.unlinkSync(path.join(__dirname, `../../${imagePath}`));
-    } catch (err) {
-      return console.error("Error deleting file:", err);
-    }
     res.status(200).send({
       message: "Image uploaded successfully. Please save changes.",
       image: `/homestays/${req.file.filename}`,
