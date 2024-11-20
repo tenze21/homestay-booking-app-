@@ -23,7 +23,7 @@ pool.query("SELECT NOW()", (err, res) => {
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`server running on port ${port}...`);
+  console.log(`server running in ${process.env.NODE_ENV} mode on port ${port}...`);
 });
 
 export default pool;
