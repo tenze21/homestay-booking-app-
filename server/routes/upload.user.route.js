@@ -1,9 +1,6 @@
-import fs from "fs";
 import path from "path";
 import express from "express";
 import multer from "multer";
-import { getUserProfileQuery } from "../models/user.model.js";
-import pool from "../server.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
@@ -43,17 +40,6 @@ router.post("/", (req, res) => {
   uploadUserProfile(req, res, async function (err) {
     if (err) {
       return res.status(400).send({ message: err.message });
-    }
-    const { userId } = req.body;
-    const profile = await pool.query(getUserProfileQuery, [userId]);
-    if (profile.rows[0].profile !== "/images/user/default-profile.jpg") {
-      const imagePath = profile.rows[0].profile;
-
-      try {
-        fs.unlinkSync(path.join(__dirname, `../../${imagePath}`));
-      } catch (deleteErr) {
-        console.error("Error deleting file:", deleteErr);
-      }
     }
     res.status(200).send({
       message: "Profile uploaded successfully. Please save changes.",

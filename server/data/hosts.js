@@ -1,6 +1,6 @@
 const hosts = [
   {
-    user_id: 1,
+    user_id: 7,
     education: "Bachelors degree",
     spoken_languages: JSON.stringify(["spanish", "Hindi", "English"]),
     profession: "Software developer",
@@ -12,7 +12,7 @@ const hosts = [
         As a software developer, I thrive on solving complex problems and creating efficient solutions. I enjoy collaborating with teams to bring ideas to life, whether it's developing user-friendly applications or optimizing backend systems. The ever-evolving nature of technology keeps me on my toes, and I'm always eager to learn new skills and stay updated with industry trends. Coding is not just a job for me; it's a passion that fuels my creativity and drives me to continuously improve.`,
   },
   {
-    user_id: 2,
+    user_id: 8,
     education: "High School",
     spoken_languages: JSON.stringify(["Hindi", "English"]),
     profession: "Farmer",
@@ -24,7 +24,7 @@ const hosts = [
     Throughout my career, I have had the privilege of working on a variety of projects, from stage plays to independent films. Each role I take on allows me to explore different facets of human experience, and I find immense joy in bringing characters to life. I believe that acting is not just about performing; it's about connecting with the audience and evoking emotions that resonate with them. Whether I'm playing a dramatic lead or a quirky supporting character, I strive to deliver authentic performances that leave a lasting impact.`,
   },
   {
-    user_id: 3,
+    user_id: 9,
     education: "Bachelors Degree",
     spoken_languages: JSON.stringify(["Hindi", "English", "Russian"]),
     profession: "Actor",
@@ -36,7 +36,7 @@ const hosts = [
     Throughout my career, I have had the privilege of working on a variety of projects, from stage plays to independent films. Each role I take on allows me to explore different facets of human experience, and I find immense joy in bringing characters to life. I believe that acting is not just about performing; it's about connecting with the audience and evoking emotions that resonate with them. Whether I'm playing a dramatic lead or a quirky supporting character, I strive to deliver authentic performances that leave a lasting impact.`,
   },
   {
-    user_id: 4,
+    user_id: 10,
     education: "Bachelors Degree",
     spoken_languages: JSON.stringify(["Hindi", "English", "Russian"]),
     profession: "Actor",
@@ -48,7 +48,7 @@ const hosts = [
     Throughout my career, I have had the privilege of working on a variety of projects, from stage plays to independent films. Each role I take on allows me to explore different facets of human experience, and I find immense joy in bringing characters to life. I believe that acting is not just about performing; it's about connecting with the audience and evoking emotions that resonate with them. Whether I'm playing a dramatic lead or a quirky supporting character, I strive to deliver authentic performances that leave a lasting impact.`,
   },
   {
-    user_id: 5,
+    user_id: 11,
     education: "Bachelors Degree",
     spoken_languages: JSON.stringify(["Hindi", "English", "Russian"]),
     profession: "Actor",

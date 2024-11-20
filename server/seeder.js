@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 
 const insertUser = async () => {
-  const query = `INSERT INTO "User" (full_name, email, contact_number, gender, country, region, password, ishost) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+  const query = `INSERT INTO "User" (full_name, email, contact_number, gender, country, region, password, ishost, profile) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
 
   try {
     for (const user of users) {
@@ -31,6 +31,7 @@ const insertUser = async () => {
         user.region,
         user.password,
         user.isHost,
+        user.profile
       ]);
     }
     console.log("users inserted successfully");
