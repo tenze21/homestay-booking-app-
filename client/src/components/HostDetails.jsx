@@ -211,7 +211,7 @@ function HostDetails({ setPage }) {
                   <Form.Check
                     label="Korean"
                     type="checkbox"
-                    value={"korean"}
+                    value={"Korean"}
                     checked={spoken_languages.includes("Korean")}
                     className="d-flex align-items-center checkbox-custom"
                     onChange={(e) => {
