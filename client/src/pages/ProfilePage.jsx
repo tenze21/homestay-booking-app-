@@ -609,7 +609,7 @@ function ProfilePage() {
                               <Form.Check
                                 label="Korean"
                                 type="checkbox"
-                                value={"korean"}
+                                value={"Korean"}
                                 checked={spokenLanguages.includes("Korean")}
                                 className="d-flex align-items-center checkbox-custom my-3 fw-semibold"
                                 onChange={(e) => {
