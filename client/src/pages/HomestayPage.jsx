@@ -268,7 +268,7 @@ const HomestayPage = () => {
                               Check-in
                             </h6>
                             <p className="m-0 text-center">
-                              {homestay.checkin}
+                              {homestay.check_in}
                             </p>
                           </Col>
                           <Col className="p-0">
@@ -276,7 +276,7 @@ const HomestayPage = () => {
                               Check-out
                             </h6>
                             <p className="m-0 text-center">
-                              {homestay.checkout}
+                              {homestay.check_out}
                             </p>
                           </Col>
                         </Row>
@@ -362,7 +362,7 @@ const HomestayPage = () => {
               )}
             </Col>
           </Row>
-          <ListGroup>
+          <ListGroup id="reviews">
             <Row>
               <h3 className="fs-3 mb-3 fw-semibold">Reviews</h3>
             </Row>

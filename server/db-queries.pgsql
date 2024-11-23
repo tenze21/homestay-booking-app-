@@ -76,7 +76,6 @@ CREATE TABLE Reservations(
     FOREIGN KEY (user_id) REFERENCES "User"(user_id) ON DELETE CASCADE,
     FOREIGN KEY (homestay_id) REFERENCES homestays(homestay_id) ON DELETE CASCADE
 );
-DROP TABLE reservations;
 
 CREATE TABLE Payment_details(
     payment_id CHAR(17) PRIMARY KEY,
@@ -86,7 +85,6 @@ CREATE TABLE Payment_details(
     email VARCHAR(255) NOT NULL,
     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id) ON DELETE CASCADE
 );
-DROP TABLE payment_details;
 
 CREATE TABLE Reviews (
     review_id SERIAL PRIMARY KEY,      
@@ -99,7 +97,6 @@ CREATE TABLE Reviews (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE Reviews;
 
 CREATE TABLE Payment_details_admin(
     Payment_id SERIAL PRIMARY KEY,
@@ -112,63 +109,9 @@ CREATE TABLE Payment_details_admin(
     bank_name VARCHAR(255) NOT NULL,
     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id) ON DELETE CASCADE
 );
-DROP TABLE payment_details_admin;
+DELETE FROM "User" WHERE user_id=16;
+DELETE FROM Homestays WHERE homestay_id=25;
 
-DROP TABLE "User";
-DROP TABLE Host;
-DROP TABLE Homestays;
-DROP TABLE Role;
-DROP TABLE Reviews;
-
--- Added password field to user table
-ALTER TABLE "User"
-ADD COLUMN password VARCHAR(255) NOT NULL; 
-
--- Add profile field to user table
-ALTER TABLE "User"
-ADD COLUMN profile VARCHAR(255) NOT NULL; 
-
--- Add images filed to Homestay table
-ALTER TABLE Homestays
-ADD COLUMN images TEXT NOT NULL; 
-
--- Add numReviews field
-ALTER TABLE Homestays
-ADD COLUMN numReviews INT DEFAULT 0; 
-
--- Add rating field
-ALTER TABLE Homestays
-ADD COLUMN rating DECIMAL(3,2) DEFAULT 0.00; 
-
--- Add title field
-ALTER TABLE Homestays
-ADD COLUMN title VARCHAR(245) NOT NULL; 
-
-ALTER TABLE Homestays
-ADD COLUMN description VARCHAR(5000) NOT NULL; 
-
-ALTER TABLE Reservations
-ADD COLUMN status VARCHAR(20) CHECK (status IN ('Pending', 'Completed', 'No show')) DEFAULT 'Pending'; 
-
-ALTER TABLE Reservations
-ADD COLUMN isPaidAdmin BOOLEAN NOT NULL DEFAULT FALSE; 
-
-ALTER TABLE Reservations
-ADD COLUMN paidAt DATE;
-
-
-ALTER TABLE "User"
-ALTER COLUMN profile SET DEFAULT '/images/user/default-profile.jpg'; 
-
-ALTER TABLE reservations
-ALTER COLUMN arrival_date TYPE DATE;
-
-
-DELETE FROM "User" WHERE user_id=20;
-DELETE FROM Homestays WHERE homestay_id=17;
-
-ALTER TABLE Reservations
-ALTER COLUMN total_payment TYPE DECIMAL(10, 2);
 
 DELETE FROM reservations WHERE reservation_id<=3;
 DELETE FROM host WHERE user_id=11;
