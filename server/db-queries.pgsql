@@ -124,6 +124,8 @@ SELECT * FROM Reviews;
 SELECT * FROM Reservations;
 SELECT * FROM Payment_details;
 
+UPDATE homestays SET numreviews=0, rating=0.00 WHERE homestay_id=13;
+
 DELETE FROM HOST WHERE user_id=8;
 DELETE FROM Reviews WHERE review_id=4;
 

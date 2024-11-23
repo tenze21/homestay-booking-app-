@@ -82,7 +82,7 @@ const HomestayPage = () => {
         </Message>
       ) : (
         <>
-        <Meta title={homestay.title} description={homestay.description}/>
+          <Meta title={homestay.title} description={homestay.description} />
           <Row>
             <h1 className="fs-3 fw-semibold mt-3 mb-2">{homestay.title}</h1>
             <Col sm={12} md={12} lg={6}>
@@ -135,7 +135,16 @@ const HomestayPage = () => {
                 <ListGroup.Item className="bg-transparent border-0 p-0 pb-2 d-flex align-items-center fs-4">
                   <FaStar className="fs-4 me-3" />
                   {homestay.rating} (
-                  <Link to="#reviews" className="text-dark">
+                  <Link
+                    to="#reviews"
+                    className="text-dark"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document
+                        .getElementById("reviews")
+                        .scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
                     {homestay.numreviews} reviews
                   </Link>
                   )
@@ -239,9 +248,14 @@ const HomestayPage = () => {
                 {homestay.spoken_languages && (
                   <ListGroup.Item className="bg-transparent border-0 p-0 fs-5 mb-2 fw-normal">
                     Spoken Languages:
-                    <ul className="d-flex gap-5 p-0" style={{listStyle: "none"}}>
-                      {homestay.spoken_languages.map((language)=>(
-                        <li><FaCheck size={14}/> {language}</li>
+                    <ul
+                      className="d-flex gap-5 p-0"
+                      style={{ listStyle: "none" }}
+                    >
+                      {homestay.spoken_languages.map((language) => (
+                        <li>
+                          <FaCheck size={14} /> {language}
+                        </li>
                       ))}
                     </ul>
                   </ListGroup.Item>
@@ -418,7 +432,7 @@ const HomestayPage = () => {
               )}
             </Row>
           </ListGroup>
-          {userInfo && userInfo?._id !== homestay.user_id? (
+          {userInfo && userInfo?._id !== homestay.user_id ? (
             <Button
               className="border-0 rounded-circle fs-3 position-fixed"
               style={{
@@ -432,7 +446,9 @@ const HomestayPage = () => {
             >
               +
             </Button>
-          ) : ("")}
+          ) : (
+            ""
+          )}
           <ReviewModal
             show={modalShow}
             onHide={() => setModalShow(false)}
