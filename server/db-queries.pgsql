@@ -110,7 +110,7 @@ CREATE TABLE Payment_details_admin(
     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id) ON DELETE CASCADE
 );
 DELETE FROM "User" WHERE user_id=16;
-DELETE FROM Homestays WHERE homestay_id=25;
+DELETE FROM Homestays WHERE homestay_id=27;
 
 
 DELETE FROM reservations WHERE reservation_id<=3;
