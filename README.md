@@ -47,4 +47,4 @@
 
     ![](/documentation-assets/Screenshot%202024-12-07%20222605.png)
 
-                 Compiled by Tenzin Choda, December-2024.
+                                            Compiled by Tenzin Choda, December-2024.
