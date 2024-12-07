@@ -42,7 +42,8 @@ The application was build on the PERN stack.
 2. Clone the repository.
 
    ```
-   git clone https://gitlab.com/csf-2015401233/homestay_booking_app.git ```
+   git clone https://gitlab.com/csf-2015401233/homestay_booking_app.git 
+   ```
 
 3. Install dependencies.
 
