@@ -5,11 +5,10 @@ dotenv.config();
 
 const {Pool} = pkg;
 const pool = new Pool({
-  user: process.env.POSTGRES_USER, 
-  host: process.env.POSTGRES_HOST, 
-  database: process.env.POSTGRES_DATABASE, 
-  password: process.env.POSTGRES_PASSWORD, 
-  connectionString: `postgresql://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.POSTGRES_HOST}/${process.env.POSTGRES_DATABASE}?ssl=true`,
+  user: "postgres", 
+  host: "localhost", 
+  database: "homestay-booking-db", 
+  password: "postgres", 
   port: 5432, 
 });
 

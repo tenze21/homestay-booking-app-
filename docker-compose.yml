@@ -1,0 +1,16 @@
+# version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: homestay-booking-container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: homestay-booking-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

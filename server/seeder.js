@@ -9,13 +9,14 @@ import reviews from "./data/reviews.js";
 const { Pool } = pkg;
 
 const pool = new Pool({
-  user: "postgres_admin",
-  host: "dpg-cstksk68ii6s73fk03ng-a.singapore-postgres.render.com",
-  database: "homestay_booking_db_38e8",
-  password: "05UmSVlEKiRZAvi0lNouZgSsOQh9iBrf",
-  connectionString: `postgresql://postgres_admin:05UmSVlEKiRZAvi0lNouZgSsOQh9iBrf@dpg-cstksk68ii6s73fk03ng-a.singapore-postgres.render.com/homestay_booking_db_38e8?ssl=true`,
+  user: "postgres",
+  host: "localhost",
+  database: "homestay-booking-db",
+  password: "postgres",
   port: 5432,
 });
+
+// execute each function one at a time, start with the user since the user_id is used as foreign key in other tables.
 
 const insertUser = async () => {
   const query = `INSERT INTO "User" (full_name, email, contact_number, gender, country, region, password, ishost, profile) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
@@ -39,7 +40,7 @@ const insertUser = async () => {
     console.error("error inserting users: ", err);
   }
 };
-// insertUser();
+insertUser();
 
 const insertHomestays = async () => {
   const query = `INSERT INTO Homestays (user_id, dzongkhag, gewog, latitude, longitude, facilities, check_in, check_out, rate, rules, accomodation, isAvaliable, images, numReviews, rating, title, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)`;
@@ -71,7 +72,7 @@ const insertHomestays = async () => {
     console.error("erro inserting homestays: ", err);
   }
 };
-insertHomestays();
+// insertHomestays();
 
 const insertHosts = async () => {
   const query = `INSERT INTO Host (user_id, education, spoken_languages, profession, date_of_birth, account_number, account_holder_name, bank_name, bio) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
