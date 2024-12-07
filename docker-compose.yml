@@ -2,7 +2,7 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: my_postgres
+    container_name: homestay-booking-container
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

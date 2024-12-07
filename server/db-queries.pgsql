@@ -1,9 +1,9 @@
 CREATE TABLE "User"(
     user_id SERIAL PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
-    profile VARCHAR(255) NOT NULL DEFAULT "/images/user/default-profile.jpg",
+    profile VARCHAR(255) NOT NULL DEFAULT '/images/user/default-profile.jpg',
     email VARCHAR(255) UNIQUE NOT NULL,
-    contact_number VARCHAR(15) UNIQUE,
+    contact_number VARCHAR(15),
     gender VARCHAR(10) CHECK (gender IN ('Male', 'Female', 'Other')),
     country VARCHAR(255) NOT NULL,
     region VARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Host(
     education VARCHAR(100),
     spoken_languages JSONB,              -- Store multiple languages as a text string or JSON array
     profession VARCHAR(100),
-    date_of_birth DATE,
+    date_of_birth DATE DEFAULT '01-01-2000',
     account_number INT NOT NULL,
     account_holder_name VARCHAR(255) NOT NULL,
     bank_name VARCHAR(255) NOT NULL,
@@ -119,6 +119,9 @@ DROP TABLE Host;
 DROP TABLE Homestays;
 DROP TABLE Role;
 DROP TABLE Reviews;
+DROP TABLE reservations;
+DROP TABLE payment_details;
+DROP TABLE payment_details_admin;
 
 -- Added password field to user table
 ALTER TABLE "User"
@@ -164,8 +167,12 @@ ALTER TABLE reservations
 ALTER COLUMN arrival_date TYPE DATE;
 
 
-DELETE FROM "User" WHERE user_id=20;
-DELETE FROM Homestays WHERE homestay_id=17;
+ALTER TABLE Host
+ALTER COLUMN date_of_birth SET DEFAULT '01-01-2000';
+
+
+DELETE FROM "User";
+DELETE FROM Homestays;
 
 ALTER TABLE Reservations
 ALTER COLUMN total_payment TYPE DECIMAL(10, 2);

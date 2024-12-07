@@ -2,6 +2,7 @@ import { RxQuestionMarkCircled } from "react-icons/rx";
 import "../assets/styles/base.css";
 import { NavDropdown, Image } from "react-bootstrap";
 import { TbLogout2 } from "react-icons/tb";
+import { FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -96,11 +97,9 @@ function Header() {
       ) : (
         <div className="nav-btns">
           <Link className="nav-link-custom" to="/login">
-            Login
+            Sign in 
           </Link>
-          <Link className="nav-link-custom" to="/signup">
-            Signup
-          </Link>
+          <FaUser size={24}/>
         </div>
       )}
     </nav>

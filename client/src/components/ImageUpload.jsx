@@ -76,7 +76,6 @@ function ImageUpload({ setPage }) {
     });
     try {
       const res = await uploadHomestayImage(formData).unwrap();
-      toast.success(res.message);
       return res.images;
     } catch (err) {
       toast.error(err?.data?.message || err.error);
@@ -115,6 +114,7 @@ function ImageUpload({ setPage }) {
         bio,
       }).unwrap();
       await updateUserRole({ isHost: true, userId: userInfo._id }).unwrap();
+      toast.success("Homestay details saved successfully!");
       await logoutApiCall().unwrap();
       dispatch(logout());
       localStorage.removeItem("propertyInfo");

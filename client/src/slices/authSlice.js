@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : null,
+  userInfo: document.cookie.startsWith("token")? JSON.parse(document.cookie.substring(6)): null,
 };
 
 const authSlice = createSlice({
@@ -12,7 +10,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.userInfo = action.payload;
-      localStorage.setItem("userInfo", JSON.stringify(action.payload));
+      document.cookie=`token=${JSON.stringify(action.payload)}`;
     },
     logout: (state, action) => {
       state.userInfo = null;

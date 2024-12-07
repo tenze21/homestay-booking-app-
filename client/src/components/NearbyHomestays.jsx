@@ -31,7 +31,7 @@ const NearbyHomestays=({homestays})=>{
             
             const options={
                 enableHighAccuracy: true,
-                timeout: 10000,//wait for five minutes
+                timeout: 60000,//wait for one minute
                 maximumAge: 0,// specifies that the browser should return the current position and not a cached position.
             };
             
