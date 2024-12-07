@@ -115,6 +115,6 @@ This project eventhough not the perfect one of it's kind is a comprehensive one 
 I think I learned a lot by doing this project. Most importantly it really solidified my understanding, confidence and ability to work with react. I was really amazed to see what was possible with a library like react (before this project I was a little skeptical about using libraries and frameworks in my development process) it really makes implementing complicated features a breeze. To top it all I also got a hands on practice to use redux toolkit which was also a greate state management library for react it really made managing complicated states a piece of cake in react although it's initial setup was kind of hard to grasp but with a understanding of redux it becomes much simple.
 
 ## 8. Acknowledgement.
-I am really greatful to my module tutor Ms.Namgay Dema, her guidance was a crucial part of this project and in doing this project I really learned a lot. I would also like to drop some gratitude to ***Facebook(meta)*** for doing such an awesome job with react and opensourcing it means a lot so **"Thankyou meta"**.
+I am really greatful to my module tutor Ms.Namgay Dema, her guidance was a crucial part of this project and in doing this project I really learned a lot. I would also like to drop some gratitude to ***Facebook(meta)*** for doing such an awesome job with react and open sourcing it means a lot so **"Thankyou meta"**.
 
-                                        Complied By Tenzin Choda, December-2024
+                                        Complied By Tenzin Choda, December-2024.
