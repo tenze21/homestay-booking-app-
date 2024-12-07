@@ -117,4 +117,4 @@ I think I learned a lot by doing this project. Most importantly it really solidi
 ## 8. Acknowledgement.
 I am really greatful to my module tutor Ms.Namgay Dema, her guidance was a crucial part of this project and in doing this project I really learned a lot. I would also like to drop some gratitude to ***Facebook(meta)*** for doing such an awesome job with react and opensourcing it means a lot so **"Thankyou meta"**.
 
-           Complied By Tenzin Choda, December-2024
+                                        Complied By Tenzin Choda, December-2024
