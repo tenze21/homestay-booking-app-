@@ -114,7 +114,7 @@ function ImageUpload({ setPage }) {
         bio,
       }).unwrap();
       await updateUserRole({ isHost: true, userId: userInfo._id }).unwrap();
-      toast.success("Homestay details saved successfully!");
+      toast.success("Homestay details saved successfully!")
       await logoutApiCall().unwrap();
       dispatch(logout());
       localStorage.removeItem("propertyInfo");
