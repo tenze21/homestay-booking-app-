@@ -154,20 +154,23 @@ main{
       right: 9.8rem;
     }
   }
-  .nav-btns {
+  .nav-btns{
     display: flex;
-    gap: 1.5rem;
-    .nav-link-custom{
-      border: 1px solid var(--primary);
-      font-weight: var(--font-weight-regular);
-      padding: 0.2rem 2rem !important;
-      border-radius: 10px;
-      transition: var(--transition-hover);
-      color: #fff;
-      font-family: var(--font-primary) !important;
-      &:hover {
-        background-color: var(--primary);
-        color: #fff;
+    align-items: center;
+    gap: 1rem;
+    a{
+      position: relative;
+      &::before{
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #fff;
+        top: 2rem;
+        transition: width 300ms ease-in-out;
+      }
+      &:hover::before{
+        width: 100%;
       }
     }
   }

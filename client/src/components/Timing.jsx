@@ -33,6 +33,7 @@ function Timing({ setPage }) {
           className="rounded shadow-sm ps-4 pe-4 pt-4 pb-5 mb-3"
           style={{ backgroundColor: "white" }}
         >
+          <label htmlFor="check_in"  className="mb-2 fw-semibold ">Check In:</label>
           <Form.Control
             className="mb-4"
             type="time"
@@ -42,6 +43,7 @@ function Timing({ setPage }) {
             required
             size="lg"
           ></Form.Control>
+          <label htmlFor="check_out" className="mb-2 fw-semibold p-0">Check Out:</label>
           <Form.Control
             className="mb-5"
             type="time"

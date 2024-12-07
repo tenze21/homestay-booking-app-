@@ -40,7 +40,7 @@ function Location({setPage}) {
             };
             const options={
                 enableHighAccuracy: true,
-                timeout: 10000,
+                timeout: 60000,
                 maximumAge: 0,
             };
             function error(error){

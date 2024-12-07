@@ -28,8 +28,8 @@ function HomePage() {
         </Message>
       ) : (
         <>
-          <Meta />
-          <NearbyHomestays homestays={homestays} />
+        <Meta/>
+          <NearbyHomestays homestays={homestays}/>
           <h1 className="fs-3">Homestays Across Bhutan</h1>
           <Row as="section">
             {homestays.map((homestay) => {

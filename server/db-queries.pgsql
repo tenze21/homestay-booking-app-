@@ -1,9 +1,9 @@
 CREATE TABLE "User"(
     user_id SERIAL PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
-    profile VARCHAR(255) NOT NULL DEFAULT "/images/user/default-profile.jpg",
+    profile VARCHAR(255) NOT NULL DEFAULT '/images/user/default-profile.jpg',
     email VARCHAR(255) UNIQUE NOT NULL,
-    contact_number VARCHAR(15) UNIQUE,
+    contact_number VARCHAR(15),
     gender VARCHAR(10) CHECK (gender IN ('Male', 'Female', 'Other')),
     country VARCHAR(255) NOT NULL,
     region VARCHAR(255) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Host(
     education VARCHAR(100),
     spoken_languages JSONB,              -- Store multiple languages as a text string or JSON array
     profession VARCHAR(100),
-    date_of_birth DATE,
+    date_of_birth DATE DEFAULT '01-01-2000',
     account_number INT NOT NULL,
     account_holder_name VARCHAR(255) NOT NULL,
     bank_name VARCHAR(255) NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE Reservations(
     num_days INT NOT NULL,
     payment_method VARCHAR(255) NOT NULL,
     rate INT NOT NULL,
-    total_payment DECIMAL(10, 2),
+    total_payment DECIMAL(10, 2) NOT NULL,
     status VARCHAR(20) CHECK (status IN ('Pending', 'Completed', 'No show')) DEFAULT 'Pending',
     isPaid BOOLEAN NOT NULL DEFAULT FALSE,
     paidAt DATE,
@@ -109,13 +109,6 @@ CREATE TABLE Payment_details_admin(
     bank_name VARCHAR(255) NOT NULL,
     FOREIGN KEY (reservation_id) REFERENCES Reservations(reservation_id) ON DELETE CASCADE
 );
-DELETE FROM "User" WHERE user_id=16;
-DELETE FROM Homestays WHERE homestay_id=27;
-
-
-DELETE FROM reservations WHERE reservation_id<=3;
-DELETE FROM host WHERE user_id=11;
-UPDATE "User" SET ishost=FALSE WHERE user_id=8;
 
 SELECT * FROM "User";
 SELECT * FROM homestays;
@@ -123,10 +116,3 @@ SELECT * FROM Host;
 SELECT * FROM Reviews;
 SELECT * FROM Reservations;
 SELECT * FROM Payment_details;
-
-UPDATE homestays SET numreviews=0, rating=0.00 WHERE homestay_id=13;
-
-DELETE FROM HOST WHERE user_id=8;
-DELETE FROM Reviews WHERE review_id=4;
-
-SELECT profile FROM "User" WHERE user_id = 20;

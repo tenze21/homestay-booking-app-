@@ -12,9 +12,8 @@ const Meta = ({ title, description, keywords }) => {
 
 Meta.defaultProps = {
   title: "Bhutan Homestays",
-  description:
-    "Reserve the best homestays which meet your needs while exploring the beauty of Bhutan.",
-  keywords: "tourism, bhutan, homestays, accomodation, reservation",
+  description: "We have got your accomodation in check while you explore the beauty of this gifted land.",
+  keywords: "homestay, reservation, bhutan, tourism",
 };
 
 export default Meta;

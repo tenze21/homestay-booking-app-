@@ -82,7 +82,7 @@ const HomestayPage = () => {
         </Message>
       ) : (
         <>
-          <Meta title={homestay.title} description={homestay.description} />
+        <Meta title={homestay.title} description={homestay.description}/>
           <Row>
             <h1 className="fs-3 fw-semibold mt-3 mb-2">{homestay.title}</h1>
             <Col sm={12} md={12} lg={6}>
